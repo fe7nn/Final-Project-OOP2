@@ -12,8 +12,8 @@ namespace Final_Project_OOP2
         public VotingSytem()
         {
             InitializeComponent();
-            panelDashboard.Visible = false;
             panelLogin.Visible = true;
+            panelRegister.Visible = false;
 
             this.VisibleChanged += new EventHandler(VotingSytem_VisibleChanged);
         }
@@ -47,31 +47,42 @@ namespace Final_Project_OOP2
                 if (conn.State == ConnectionState.Open) conn.Close();
                 conn.Open();
 
-                string query = "SELECT [UserRole], [Username] FROM [Users] WHERE [Username] = ? AND [Password] = ?";
+                // UPDATED: Changed [ElectionStar] to [ElectionStart] to match your screenshot
+                string query = "SELECT [UserRole], [Username], [StudentName], [YearLevel], [Course], [ElectionTitle] FROM [Users] WHERE [Username] = ? AND [Password] = ?";
+
                 OleDbCommand cmd = new OleDbCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("?", txtUsername.Text);
-                cmd.Parameters.AddWithValue("?", txtPassword.Text);
-
+                // Access requires parameters in the exact order of the '?' in the query
+                cmd.Parameters.AddWithValue("@p1", txtUsername.Text); // For [Username]
+                cmd.Parameters.AddWithValue("@p2", txtPassword.Text); // For [Password]
+                 
                 OleDbDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
                     string role = reader["UserRole"]?.ToString() ?? "voter";
                     string userID = reader["Username"]?.ToString() ?? "User";
+                    string studentName = reader["StudentName"]?.ToString() ?? "Student";
+                    string year = reader["YearLevel"]?.ToString() ?? "";
+                    string course = reader["Course"]?.ToString() ?? "";
+                    string studentElection = reader["ElectionTitle"].ToString();
 
-                    MessageBox.Show($"Login Successful! Welcome, {role}.");
+
+
+                    MessageBox.Show($"Login Successful! Welcome, {studentName}.");
 
                     if (role.ToLower() == "admin")
                     {
                         AdminDashboard adminForm = new AdminDashboard(userID);
+                        adminForm.RefreshAllData();
                         adminForm.Show();
                         this.Hide();
                     }
                     else
                     {
-                        VoterDashboard voterForm = new VoterDashboard(userID);
-                        voterForm.Show();
+                        // Now passing the correct data to your VoterDashboard
+                        VoterDashboard vDash = new VoterDashboard(userID, studentName, year, course, studentElection);
+                        vDash.Show();
                         this.Hide();
                     }
                 }

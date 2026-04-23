@@ -1,6 +1,6 @@
 ﻿namespace Final_Project_OOP2
 {
-    partial class VoterDashboard
+    partial class VotingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoterDashboard));
-            pictureBox1 = new PictureBox();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VotingForm));
             mainPanel = new Panel();
             btnLogout = new Button();
             btnProfile = new Button();
             btnDashboard = new Button();
-            pnlDashboard = new Panel();
-            panel2 = new Panel();
-            btnVoteNow = new Button();
-            lblEndDate = new Label();
-            lblStartDate = new Label();
-            label3 = new Label();
-            lblStatusLabel = new Label();
-            lblWelcome = new Label();
-            pnlElectionCard = new Panel();
-            lblElectionTitle = new Label();
-            pnlTimeContainer = new Panel();
-            lblTimeRemaining = new Label();
-            label232 = new Label();
+            pictureBox1 = new PictureBox();
             pnlProfile = new Panel();
             label6 = new Label();
             panel1 = new Panel();
@@ -61,29 +52,27 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             pictureBox2 = new PictureBox();
-            timer1 = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlVoterArea = new Panel();
+            label8 = new Label();
+            cmbPositions = new ComboBox();
+            dgvCandidates = new DataGridView();
+            colImage = new DataGridViewImageColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colParty = new DataGridViewTextBoxColumn();
+            colVote = new DataGridViewButtonColumn();
+            label7 = new Label();
+            label3 = new Label();
+            lblElectionTitle = new Label();
             mainPanel.SuspendLayout();
-            pnlDashboard.SuspendLayout();
-            panel2.SuspendLayout();
-            pnlElectionCard.SuspendLayout();
-            pnlTimeContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlProfile.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            pnlVoterArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCandidates).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.header1;
-            pictureBox1.Location = new Point(-3, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1560, 92);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
             // 
             // mainPanel
             // 
@@ -91,10 +80,10 @@
             mainPanel.Controls.Add(btnLogout);
             mainPanel.Controls.Add(btnProfile);
             mainPanel.Controls.Add(btnDashboard);
-            mainPanel.Location = new Point(-3, 89);
+            mainPanel.Location = new Point(-2, 88);
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(1560, 81);
-            mainPanel.TabIndex = 2;
+            mainPanel.TabIndex = 5;
             // 
             // btnLogout
             // 
@@ -103,7 +92,7 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(1428, 9);
+            btnLogout.Location = new Point(1437, 9);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(120, 67);
             btnLogout.TabIndex = 41;
@@ -141,173 +130,26 @@
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
             // 
-            // pnlDashboard
+            // pictureBox1
             // 
-            pnlDashboard.BackgroundImage = Properties.Resources.panelbackground;
-            pnlDashboard.Controls.Add(panel2);
-            pnlDashboard.Location = new Point(-3, 171);
-            pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.Size = new Size(1560, 650);
-            pnlDashboard.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.Transparent;
-            panel2.Controls.Add(btnVoteNow);
-            panel2.Controls.Add(lblEndDate);
-            panel2.Controls.Add(lblStartDate);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(lblStatusLabel);
-            panel2.Controls.Add(lblWelcome);
-            panel2.Controls.Add(pnlElectionCard);
-            panel2.Controls.Add(pnlTimeContainer);
-            panel2.ImeMode = ImeMode.On;
-            panel2.Location = new Point(160, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1238, 593);
-            panel2.TabIndex = 31;
-            // 
-            // btnVoteNow
-            // 
-            btnVoteNow.BackColor = Color.Maroon;
-            btnVoteNow.FlatAppearance.BorderSize = 0;
-            btnVoteNow.FlatStyle = FlatStyle.Flat;
-            btnVoteNow.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVoteNow.ForeColor = Color.White;
-            btnVoteNow.Location = new Point(504, 453);
-            btnVoteNow.Name = "btnVoteNow";
-            btnVoteNow.Size = new Size(239, 69);
-            btnVoteNow.TabIndex = 39;
-            btnVoteNow.Text = "Vote Now!";
-            btnVoteNow.UseVisualStyleBackColor = false;
-            btnVoteNow.Click += btnVoteNow_Click;
-            // 
-            // lblEndDate
-            // 
-            lblEndDate.AutoSize = true;
-            lblEndDate.BackColor = Color.Transparent;
-            lblEndDate.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEndDate.ForeColor = Color.Black;
-            lblEndDate.Location = new Point(461, 249);
-            lblEndDate.Name = "lblEndDate";
-            lblEndDate.Size = new Size(56, 30);
-            lblEndDate.TabIndex = 35;
-            lblEndDate.Text = "End:";
-            // 
-            // lblStartDate
-            // 
-            lblStartDate.AutoSize = true;
-            lblStartDate.BackColor = Color.Transparent;
-            lblStartDate.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStartDate.ForeColor = Color.Black;
-            lblStartDate.Location = new Point(461, 219);
-            lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(66, 30);
-            lblStartDate.TabIndex = 35;
-            lblStartDate.Text = "Start:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(51, 189);
-            label3.Name = "label3";
-            label3.Size = new Size(1156, 30);
-            label3.TabIndex = 34;
-            label3.Text = "Your vote is your voice — make it count! Support leaders who reflect your values and vision for a better community.";
-            // 
-            // lblStatusLabel
-            // 
-            lblStatusLabel.BackColor = Color.Transparent;
-            lblStatusLabel.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStatusLabel.ForeColor = Color.Black;
-            lblStatusLabel.Location = new Point(51, 67);
-            lblStatusLabel.Name = "lblStatusLabel";
-            lblStatusLabel.Size = new Size(1144, 47);
-            lblStatusLabel.TabIndex = 32;
-            lblStatusLabel.Text = "Active Elections";
-            lblStatusLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblWelcome
-            // 
-            lblWelcome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblWelcome.BackColor = Color.Transparent;
-            lblWelcome.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.Maroon;
-            lblWelcome.Location = new Point(0, 2);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(1238, 65);
-            lblWelcome.TabIndex = 31;
-            lblWelcome.Text = "TEST";
-            lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlElectionCard
-            // 
-            pnlElectionCard.BackColor = Color.Maroon;
-            pnlElectionCard.Controls.Add(lblElectionTitle);
-            pnlElectionCard.Location = new Point(51, 114);
-            pnlElectionCard.Name = "pnlElectionCard";
-            pnlElectionCard.Size = new Size(1144, 65);
-            pnlElectionCard.TabIndex = 37;
-            // 
-            // lblElectionTitle
-            // 
-            lblElectionTitle.BackColor = Color.Maroon;
-            lblElectionTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblElectionTitle.ForeColor = Color.White;
-            lblElectionTitle.Location = new Point(-51, 0);
-            lblElectionTitle.Name = "lblElectionTitle";
-            lblElectionTitle.Size = new Size(1238, 65);
-            lblElectionTitle.TabIndex = 33;
-            lblElectionTitle.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlTimeContainer
-            // 
-            pnlTimeContainer.BackColor = Color.LightCoral;
-            pnlTimeContainer.Controls.Add(lblTimeRemaining);
-            pnlTimeContainer.Controls.Add(label232);
-            pnlTimeContainer.Location = new Point(51, 282);
-            pnlTimeContainer.Name = "pnlTimeContainer";
-            pnlTimeContainer.Size = new Size(1144, 65);
-            pnlTimeContainer.TabIndex = 38;
-            // 
-            // lblTimeRemaining
-            // 
-            lblTimeRemaining.AutoSize = true;
-            lblTimeRemaining.BackColor = Color.LightCoral;
-            lblTimeRemaining.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTimeRemaining.ForeColor = Color.Maroon;
-            lblTimeRemaining.Location = new Point(501, 17);
-            lblTimeRemaining.Name = "lblTimeRemaining";
-            lblTimeRemaining.Size = new Size(0, 30);
-            lblTimeRemaining.TabIndex = 36;
-            lblTimeRemaining.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label232
-            // 
-            label232.AutoSize = true;
-            label232.BackColor = Color.LightCoral;
-            label232.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label232.ForeColor = Color.Maroon;
-            label232.Location = new Point(327, 17);
-            label232.Name = "label232";
-            label232.Size = new Size(178, 30);
-            label232.TabIndex = 36;
-            label232.Text = "Time Remaining:";
-            label232.TextAlign = ContentAlignment.MiddleCenter;
+            pictureBox1.Image = Properties.Resources.header1;
+            pictureBox1.Location = new Point(-2, -1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1560, 92);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // pnlProfile
             // 
             pnlProfile.BackgroundImage = Properties.Resources.panelbackground;
             pnlProfile.Controls.Add(label6);
             pnlProfile.Controls.Add(panel1);
-            pnlProfile.Location = new Point(-3, 171);
+            pnlProfile.Location = new Point(-2, 170);
             pnlProfile.Name = "pnlProfile";
             pnlProfile.Size = new Size(1560, 650);
-            pnlProfile.TabIndex = 32;
+            pnlProfile.TabIndex = 33;
             // 
             // label6
             // 
@@ -475,75 +317,215 @@
             pictureBox2.TabIndex = 34;
             pictureBox2.TabStop = false;
             // 
-            // timer1
+            // pnlVoterArea
             // 
-            timer1.Tick += timer1_Tick;
+            pnlVoterArea.AutoScroll = true;
+            pnlVoterArea.BackgroundImage = Properties.Resources.panelbackground;
+            pnlVoterArea.Controls.Add(label8);
+            pnlVoterArea.Controls.Add(cmbPositions);
+            pnlVoterArea.Controls.Add(dgvCandidates);
+            pnlVoterArea.Controls.Add(label7);
+            pnlVoterArea.Controls.Add(label3);
+            pnlVoterArea.Controls.Add(lblElectionTitle);
+            pnlVoterArea.Location = new Point(-2, 170);
+            pnlVoterArea.Name = "pnlVoterArea";
+            pnlVoterArea.Padding = new Padding(10);
+            pnlVoterArea.Size = new Size(1560, 650);
+            pnlVoterArea.TabIndex = 38;
             // 
-            // VoterDashboard
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Maroon;
+            label8.Location = new Point(25, 123);
+            label8.Name = "label8";
+            label8.Size = new Size(225, 25);
+            label8.TabIndex = 39;
+            label8.Text = "Select a position to vote";
+            // 
+            // cmbPositions
+            // 
+            cmbPositions.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbPositions.FormattingEnabled = true;
+            cmbPositions.Location = new Point(25, 153);
+            cmbPositions.Name = "cmbPositions";
+            cmbPositions.Size = new Size(329, 33);
+            cmbPositions.TabIndex = 38;
+            cmbPositions.SelectedIndexChanged += cmbPositions_SelectedIndexChanged_1;
+            // 
+            // dgvCandidates
+            // 
+            dgvCandidates.AllowUserToAddRows = false;
+            dgvCandidates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCandidates.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvCandidates.BackgroundColor = Color.Maroon;
+            dgvCandidates.BorderStyle = BorderStyle.None;
+            dgvCandidates.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvCandidates.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gold;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Maroon;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCandidates.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCandidates.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCandidates.Columns.AddRange(new DataGridViewColumn[] { colImage, colName, colParty, colVote });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvCandidates.DefaultCellStyle = dataGridViewCellStyle4;
+            dgvCandidates.EnableHeadersVisualStyles = false;
+            dgvCandidates.GridColor = Color.DarkGray;
+            dgvCandidates.Location = new Point(25, 193);
+            dgvCandidates.Name = "dgvCandidates";
+            dgvCandidates.ReadOnly = true;
+            dgvCandidates.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCandidates.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvCandidates.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvCandidates.RowTemplate.Height = 50;
+            dgvCandidates.RowTemplate.ReadOnly = true;
+            dgvCandidates.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvCandidates.Size = new Size(1511, 433);
+            dgvCandidates.TabIndex = 37;
+            dgvCandidates.CellContentClick += dgvCandidates_CellContentClick;
+            // 
+            // colImage
+            // 
+            colImage.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            colImage.Frozen = true;
+            colImage.HeaderText = "Photo";
+            colImage.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            colImage.Name = "colImage";
+            colImage.ReadOnly = true;
+            colImage.Width = 370;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "FullName";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colName.DefaultCellStyle = dataGridViewCellStyle2;
+            colName.HeaderText = "Candidate Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            // 
+            // colParty
+            // 
+            colParty.DataPropertyName = "Description";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colParty.DefaultCellStyle = dataGridViewCellStyle3;
+            colParty.HeaderText = "Party";
+            colParty.Name = "colParty";
+            colParty.ReadOnly = true;
+            // 
+            // colVote
+            // 
+            colVote.HeaderText = "Action";
+            colVote.Name = "colVote";
+            colVote.ReadOnly = true;
+            colVote.Text = "VOTE";
+            colVote.UseColumnTextForButtonValue = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(741, 117);
+            label7.Name = "label7";
+            label7.Size = new Size(100, 21);
+            label7.TabIndex = 36;
+            label7.Text = "Vote Wisely!";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(583, 86);
+            label3.Name = "label3";
+            label3.Size = new Size(400, 25);
+            label3.TabIndex = 35;
+            label3.Text = "Please select one candidate for each position.";
+            // 
+            // lblElectionTitle
+            // 
+            lblElectionTitle.BackColor = Color.Maroon;
+            lblElectionTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblElectionTitle.ForeColor = Color.White;
+            lblElectionTitle.Location = new Point(176, 10);
+            lblElectionTitle.Name = "lblElectionTitle";
+            lblElectionTitle.Size = new Size(1238, 65);
+            lblElectionTitle.TabIndex = 34;
+            lblElectionTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // VotingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.panelbackground;
             ClientSize = new Size(1557, 818);
             Controls.Add(mainPanel);
             Controls.Add(pictureBox1);
-            Controls.Add(pnlDashboard);
+            Controls.Add(pnlVoterArea);
             Controls.Add(pnlProfile);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "VoterDashboard";
+            Name = "VotingForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "VoterDashboard";
-            Load += VoterDashboard_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            Text = "VotingForm";
+            Load += VotingForm_Load;
             mainPanel.ResumeLayout(false);
-            pnlDashboard.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            pnlElectionCard.ResumeLayout(false);
-            pnlTimeContainer.ResumeLayout(false);
-            pnlTimeContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlProfile.ResumeLayout(false);
             pnlProfile.PerformLayout();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            pnlVoterArea.ResumeLayout(false);
+            pnlVoterArea.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCandidates).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
         private Panel mainPanel;
-        private Panel pnlDashboard;
+        private Button btnLogout;
         private Button btnProfile;
         private Button btnDashboard;
-        private Button btnLogout;
+        private PictureBox pictureBox1;
         private Panel pnlProfile;
-        private Label label1;
-        private Label label2;
+        private Label label6;
+        private Panel panel1;
+        private Label lblCourse;
         private Label lblYearLevel;
         private Label lblProfileFullName;
-        private Label label4;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private Label label6;
-        private Label lblCourse;
         private Label label5;
+        private Label label4;
         private PictureBox pictureBox4;
-        private Panel panel1;
-        private System.Windows.Forms.Timer timer1;
-        private Panel panel2;
-        private Button btnVoteNow;
-        private Label lblEndDate;
-        private Label lblStartDate;
+        private Label label2;
+        private PictureBox pictureBox3;
+        private Label label1;
+        private PictureBox pictureBox2;
+        private Panel pnlVoterArea;
+        private Label label7;
         private Label label3;
-        private Label lblStatusLabel;
-        private Label lblWelcome;
-        private Panel pnlElectionCard;
         private Label lblElectionTitle;
-        private Panel pnlTimeContainer;
-        private Label lblTimeRemaining;
-        private Label label232;
+        private ComboBox cmbPositions;
+        private DataGridView dgvCandidates;
+        private Label label8;
+        private DataGridViewImageColumn colImage;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colParty;
+        private DataGridViewButtonColumn colVote;
     }
 }

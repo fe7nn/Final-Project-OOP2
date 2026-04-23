@@ -119,9 +119,9 @@
             label11.ForeColor = Color.Maroon;
             label11.Location = new Point(12, 22);
             label11.Name = "label11";
-            label11.Size = new Size(656, 25);
+            label11.Size = new Size(632, 25);
             label11.TabIndex = 26;
-            label11.Text = "Choose an Access file to import voter data. Accepted forms: (.mdb)|.mdb";
+            label11.Text = "Choose an Excel file to import voter data. Accepted forms: (.xlsx)|.xlsx";
             // 
             // ofdImport
             // 

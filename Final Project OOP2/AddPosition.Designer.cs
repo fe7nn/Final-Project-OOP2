@@ -33,7 +33,7 @@
             button1 = new Button();
             txtPositionName = new TextBox();
             PoistionCreate = new Button();
-            cmbSelectElection = new ComboBox();
+            cmbElectionTitle = new ComboBox();
             label1 = new Label();
             label5 = new Label();
             panel1.SuspendLayout();
@@ -45,7 +45,7 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(txtPositionName);
             panel1.Controls.Add(PoistionCreate);
-            panel1.Controls.Add(cmbSelectElection);
+            panel1.Controls.Add(cmbElectionTitle);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label5);
             panel1.Dock = DockStyle.Fill;
@@ -96,17 +96,17 @@
             PoistionCreate.UseVisualStyleBackColor = false;
             PoistionCreate.Click += PoistionCreate_Click;
             // 
-            // cmbSelectElection
+            // cmbElectionTitle
             // 
-            cmbSelectElection.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbSelectElection.FlatStyle = FlatStyle.Flat;
-            cmbSelectElection.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbSelectElection.FormattingEnabled = true;
-            cmbSelectElection.Items.AddRange(new object[] { "test" });
-            cmbSelectElection.Location = new Point(22, 62);
-            cmbSelectElection.Name = "cmbSelectElection";
-            cmbSelectElection.Size = new Size(303, 33);
-            cmbSelectElection.TabIndex = 5;
+            cmbElectionTitle.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbElectionTitle.FlatStyle = FlatStyle.Flat;
+            cmbElectionTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbElectionTitle.FormattingEnabled = true;
+            cmbElectionTitle.Items.AddRange(new object[] { "test" });
+            cmbElectionTitle.Location = new Point(22, 62);
+            cmbElectionTitle.Name = "cmbElectionTitle";
+            cmbElectionTitle.Size = new Size(303, 33);
+            cmbElectionTitle.TabIndex = 5;
             // 
             // label1
             // 
@@ -152,7 +152,7 @@
 
         private Panel panel1;
         private Label label5;
-        private ComboBox cmbSelectElection;
+        private ComboBox cmbElectionTitle;
         private TextBox txtPositionName;
         private Label label1;
         private Button button1;

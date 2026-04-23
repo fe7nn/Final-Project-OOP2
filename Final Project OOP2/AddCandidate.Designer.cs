@@ -31,14 +31,14 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCandidate));
             panel1 = new Panel();
+            cmbPosition = new ComboBox();
+            cmbElectionTitle = new ComboBox();
             btnCancel = new Button();
             btnSaveCandidate = new Button();
             imageList1 = new ImageList(components);
             txtDescription = new RichTextBox();
             btnChooseFile = new Button();
-            cmbStudent = new TextBox();
-            cmbPosition = new ComboBox();
-            cmbElection = new ComboBox();
+            txtName = new TextBox();
             lblFileName = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -51,13 +51,13 @@
             // panel1
             // 
             panel1.BackgroundImage = Properties.Resources.panelbackground;
+            panel1.Controls.Add(cmbPosition);
+            panel1.Controls.Add(cmbElectionTitle);
             panel1.Controls.Add(btnCancel);
             panel1.Controls.Add(btnSaveCandidate);
             panel1.Controls.Add(txtDescription);
             panel1.Controls.Add(btnChooseFile);
-            panel1.Controls.Add(cmbStudent);
-            panel1.Controls.Add(cmbPosition);
-            panel1.Controls.Add(cmbElection);
+            panel1.Controls.Add(txtName);
             panel1.Controls.Add(lblFileName);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -69,6 +69,29 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(480, 667);
             panel1.TabIndex = 0;
+            // 
+            // cmbPosition
+            // 
+            cmbPosition.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPosition.FlatStyle = FlatStyle.Flat;
+            cmbPosition.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbPosition.FormattingEnabled = true;
+            cmbPosition.Location = new Point(23, 135);
+            cmbPosition.Name = "cmbPosition";
+            cmbPosition.Size = new Size(430, 33);
+            cmbPosition.TabIndex = 35;
+            // 
+            // cmbElectionTitle
+            // 
+            cmbElectionTitle.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbElectionTitle.FlatStyle = FlatStyle.Flat;
+            cmbElectionTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbElectionTitle.FormattingEnabled = true;
+            cmbElectionTitle.Location = new Point(23, 54);
+            cmbElectionTitle.Name = "cmbElectionTitle";
+            cmbElectionTitle.Size = new Size(430, 33);
+            cmbElectionTitle.TabIndex = 35;
+            cmbElectionTitle.SelectedIndexChanged += cmbElectionTitle_SelectedIndexChanged_1;
             // 
             // btnCancel
             // 
@@ -116,6 +139,7 @@
             // txtDescription
             // 
             txtDescription.BorderStyle = BorderStyle.FixedSingle;
+            txtDescription.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescription.Location = new Point(23, 307);
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(430, 96);
@@ -138,38 +162,14 @@
             btnChooseFile.UseVisualStyleBackColor = false;
             btnChooseFile.Click += btnChooseFile_Click;
             // 
-            // cmbStudent
+            // txtName
             // 
-            cmbStudent.BorderStyle = BorderStyle.FixedSingle;
-            cmbStudent.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbStudent.Location = new Point(23, 224);
-            cmbStudent.Name = "cmbStudent";
-            cmbStudent.Size = new Size(430, 33);
-            cmbStudent.TabIndex = 7;
-            // 
-            // cmbPosition
-            // 
-            cmbPosition.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPosition.FlatStyle = FlatStyle.Flat;
-            cmbPosition.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbPosition.FormattingEnabled = true;
-            cmbPosition.Items.AddRange(new object[] { "test" });
-            cmbPosition.Location = new Point(23, 135);
-            cmbPosition.Name = "cmbPosition";
-            cmbPosition.Size = new Size(430, 33);
-            cmbPosition.TabIndex = 6;
-            // 
-            // cmbElection
-            // 
-            cmbElection.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbElection.FlatStyle = FlatStyle.Flat;
-            cmbElection.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbElection.FormattingEnabled = true;
-            cmbElection.Items.AddRange(new object[] { "test" });
-            cmbElection.Location = new Point(23, 54);
-            cmbElection.Name = "cmbElection";
-            cmbElection.Size = new Size(430, 33);
-            cmbElection.TabIndex = 6;
+            txtName.BorderStyle = BorderStyle.FixedSingle;
+            txtName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtName.Location = new Point(23, 224);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(430, 33);
+            txtName.TabIndex = 7;
             // 
             // lblFileName
             // 
@@ -177,7 +177,7 @@
             lblFileName.BackColor = Color.Transparent;
             lblFileName.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFileName.ForeColor = Color.Maroon;
-            lblFileName.Location = new Point(148, 462);
+            lblFileName.Location = new Point(15, 497);
             lblFileName.Name = "lblFileName";
             lblFileName.Size = new Size(150, 25);
             lblFileName.TabIndex = 4;
@@ -253,7 +253,7 @@
             Name = "AddCandidate";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add Candidate";
-            Load += AddCandidate_Load;
+            Load += AddCandidate_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -264,8 +264,6 @@
         private Panel panel1;
         private Label label5;
         private Label label1;
-        private ComboBox cmbPosition;
-        private ComboBox cmbElection;
         private Label label2;
         private TextBox cmbStudent;
         private Label label3;
@@ -276,5 +274,9 @@
         private Button btnCancel;
         private Button btnSaveCandidate;
         private ImageList imageList1;
+        private ComboBox cmbElectionTitl;
+        private ComboBox cmbPosition;
+        private ComboBox cmbElectionTitle;
+        private TextBox txtName;
     }
 }

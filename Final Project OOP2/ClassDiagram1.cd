@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Final_Project_OOP2.Properties.Resources" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgAQUAgAAAETAggCBMAKCAUU+EAgkEQAgAAAhcIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.AddCandidate" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAECAAChEAAECAAAACAEABAAAAAgAAAQAAABA=</HashCode>
+      <FileName>AddCandidate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.AddElection" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgCAGAAECAAABAgAACAAAACAAAIAEAAAUAAAQgAAAA=</HashCode>
+      <FileName>AddElection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.AddPosition" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAACBAAAACAAAACAAAIAAAAAAAAAQAAAIA=</HashCode>
+      <FileName>AddPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.AdminDashboard">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>9zWH/VJw3Wk4YbIwa0ykAcByooIJ4VcqDARFgwBzHkQ=</HashCode>
+      <FileName>AdminDashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.EditElection">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAGAAgCAAADAAAACAAIACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>EditElection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.ImportVoters">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAIAAACAAAAAAAACIAAACAAAEAAABBAAAAQAAAAA=</HashCode>
+      <FileName>ImportVoters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.VotingSytem">
+    <Position X="14" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>MAgAAAAQACAAABAAIACABEgCAEQ6AQAAIHAIAARAAAA=</HashCode>
+      <FileName>Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.Program" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project_OOP2.VoterDashboard" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAYrAAACAAABBAAQGAAAICAAACKWAAAABIBSBAAAQ=</HashCode>
+      <FileName>VoterDashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

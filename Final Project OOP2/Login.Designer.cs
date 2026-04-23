@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VotingSytem));
             pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
             panelLogin = new Panel();
             txtUsername = new MaskedTextBox();
             label11 = new Label();
@@ -55,9 +54,7 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
-            panelDashboard = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panelLogin.SuspendLayout();
             panelRegister.SuspendLayout();
             SuspendLayout();
@@ -71,20 +68,11 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.wmremove_transformed;
-            pictureBox2.Location = new Point(-1, 103);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(1618, 715);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
             // panelLogin
             // 
             panelLogin.Anchor = AnchorStyles.None;
-            panelLogin.BackColor = Color.Maroon;
+            panelLogin.BackColor = Color.Transparent;
+            panelLogin.BackgroundImage = Properties.Resources.testtt;
             panelLogin.Controls.Add(txtUsername);
             panelLogin.Controls.Add(label11);
             panelLogin.Controls.Add(label10);
@@ -115,9 +103,9 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.BackColor = Color.Maroon;
+            label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.White;
+            label11.ForeColor = Color.Maroon;
             label11.Location = new Point(14, 395);
             label11.Name = "label11";
             label11.Size = new Size(450, 17);
@@ -127,9 +115,9 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.Maroon;
+            label10.BackColor = Color.Transparent;
             label10.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.White;
+            label10.ForeColor = Color.Maroon;
             label10.Location = new Point(23, 319);
             label10.Name = "label10";
             label10.Size = new Size(274, 25);
@@ -138,10 +126,12 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Gold;
+            button2.BackColor = Color.Maroon;
             button2.BackgroundImageLayout = ImageLayout.None;
+            button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
             button2.Location = new Point(24, 347);
             button2.Name = "button2";
             button2.Size = new Size(273, 45);
@@ -152,10 +142,12 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.Gold;
+            btnLogin.BackColor = Color.Maroon;
             btnLogin.BackgroundImageLayout = ImageLayout.None;
+            btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(566, 313);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(104, 41);
@@ -166,10 +158,12 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Gold;
+            button1.BackColor = Color.Maroon;
             button1.BackgroundImageLayout = ImageLayout.None;
+            button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(24, 272);
             button1.Name = "button1";
             button1.Size = new Size(104, 41);
@@ -190,9 +184,9 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.Maroon;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
+            label4.ForeColor = Color.Maroon;
             label4.Location = new Point(14, 165);
             label4.Name = "label4";
             label4.Size = new Size(102, 25);
@@ -202,9 +196,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.Maroon;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
+            label3.ForeColor = Color.Maroon;
             label3.Location = new Point(14, 81);
             label3.Name = "label3";
             label3.Size = new Size(106, 25);
@@ -215,7 +209,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
+            label2.ForeColor = Color.Maroon;
             label2.Location = new Point(14, 44);
             label2.Name = "label2";
             label2.Size = new Size(669, 20);
@@ -225,9 +219,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Maroon;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.Maroon;
             label1.Location = new Point(14, 12);
             label1.Name = "label1";
             label1.Size = new Size(242, 32);
@@ -237,7 +231,8 @@
             // panelRegister
             // 
             panelRegister.Anchor = AnchorStyles.None;
-            panelRegister.BackColor = Color.Maroon;
+            panelRegister.BackColor = Color.Transparent;
+            panelRegister.BackgroundImage = Properties.Resources.testtt1;
             panelRegister.Controls.Add(button4);
             panelRegister.Controls.Add(txtRegUser);
             panelRegister.Controls.Add(txtRegEmail);
@@ -249,7 +244,7 @@
             panelRegister.Controls.Add(label6);
             panelRegister.Controls.Add(label7);
             panelRegister.Controls.Add(label8);
-            panelRegister.Location = new Point(1142, 256);
+            panelRegister.Location = new Point(1135, 235);
             panelRegister.Name = "panelRegister";
             panelRegister.Size = new Size(692, 432);
             panelRegister.TabIndex = 8;
@@ -257,10 +252,11 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.Gold;
+            button4.BackColor = Color.Maroon;
             button4.BackgroundImageLayout = ImageLayout.None;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button4.ForeColor = Color.White;
             button4.Location = new Point(547, 7);
             button4.Name = "button4";
             button4.Size = new Size(136, 37);
@@ -290,9 +286,9 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.BackColor = Color.Maroon;
+            label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.White;
+            label9.ForeColor = Color.Maroon;
             label9.Location = new Point(14, 243);
             label9.Name = "label9";
             label9.Size = new Size(64, 25);
@@ -301,10 +297,11 @@
             // 
             // btnSubmitRegistration
             // 
-            btnSubmitRegistration.BackColor = Color.Gold;
+            btnSubmitRegistration.BackColor = Color.Maroon;
             btnSubmitRegistration.BackgroundImageLayout = ImageLayout.None;
             btnSubmitRegistration.FlatStyle = FlatStyle.Flat;
             btnSubmitRegistration.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSubmitRegistration.ForeColor = Color.White;
             btnSubmitRegistration.Location = new Point(566, 366);
             btnSubmitRegistration.Name = "btnSubmitRegistration";
             btnSubmitRegistration.Size = new Size(104, 41);
@@ -315,10 +312,11 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.Gold;
+            button3.BackColor = Color.Maroon;
             button3.BackgroundImageLayout = ImageLayout.None;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
             button3.Location = new Point(14, 323);
             button3.Name = "button3";
             button3.Size = new Size(104, 41);
@@ -338,9 +336,9 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.Maroon;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
+            label5.ForeColor = Color.Maroon;
             label5.Location = new Point(14, 165);
             label5.Name = "label5";
             label5.Size = new Size(102, 25);
@@ -350,9 +348,9 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.BackColor = Color.Maroon;
+            label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.Maroon;
             label6.Location = new Point(14, 81);
             label6.Name = "label6";
             label6.Size = new Size(106, 25);
@@ -373,33 +371,24 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = Color.Maroon;
+            label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.White;
+            label8.ForeColor = Color.Maroon;
             label8.Location = new Point(14, 12);
             label8.Name = "label8";
             label8.Size = new Size(153, 32);
             label8.TabIndex = 0;
             label8.Text = "Registration";
             // 
-            // panelDashboard
-            // 
-            panelDashboard.Location = new Point(1225, 253);
-            panelDashboard.Name = "panelDashboard";
-            panelDashboard.Size = new Size(200, 100);
-            panelDashboard.TabIndex = 8;
-            panelDashboard.Visible = false;
-            // 
             // VotingSytem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Yellow;
+            BackColor = SystemColors.Control;
+            BackgroundImage = Properties.Resources.panelbackground;
             ClientSize = new Size(1557, 818);
             Controls.Add(panelRegister);
-            Controls.Add(panelDashboard);
             Controls.Add(panelLogin);
-            Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -412,7 +401,6 @@
             Load += VotingSytem_Load;
             VisibleChanged += VotingSytem_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panelLogin.ResumeLayout(false);
             panelLogin.PerformLayout();
             panelRegister.ResumeLayout(false);
@@ -423,7 +411,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
         private Panel panelLogin;
         private Label label1;
         private Label label2;
@@ -444,7 +431,6 @@
         private Label label11;
         private Label label10;
         private Button button2;
-        private Panel panelDashboard;
         private MaskedTextBox txtUsername;
         private TextBox txtPassword;
         private MaskedTextBox txtRegUser;
