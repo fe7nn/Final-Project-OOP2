@@ -47,6 +47,7 @@ namespace Final_Project_OOP2
             CheckForVoters();
             CheckForElections();
             UpdateDashboardCounters();
+            LoadElectionList();
         }
 
         #region Navigation & Sidebar Events
@@ -54,7 +55,7 @@ namespace Final_Project_OOP2
         private void DashButton_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlDashboard);
-            
+
 
         }
 
@@ -272,6 +273,7 @@ namespace Final_Project_OOP2
 
         private void LoadElectionsFromAccess()
         {
+            dgvElections.Rows.Clear();
             string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -374,7 +376,15 @@ namespace Final_Project_OOP2
 
         private void importVoters_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog { Filter = "CSV Files|*.csv" };
+            if (cmbElectionAssign.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an election to assign these voters to.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedElection = cmbElectionAssign.SelectedItem.ToString();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog { Filter = "CSV Files (*.csv)|*.csv|Excel Files (*.xlsx; *.xls)|*.xlsx;*.xls|All Files (*.*)|*.*" };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 DataTable dt = new DataTable();
@@ -386,13 +396,15 @@ namespace Final_Project_OOP2
                 dt.Columns.Add("Password");
                 dt.Columns.Add("Status");
 
+
                 string[] lines = System.IO.File.ReadAllLines(openFileDialog.FileName);
                 for (int i = 1; i < lines.Length; i++)
                 {
                     string[] data = lines[i].Split(',');
 
-                    if (data.Length >= 7)
+                    if (data.Length >= 6)
                     {
+                        // 2. Add the 8th item (selectedElection) to the row
                         dt.Rows.Add(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
                     }
                 }
@@ -400,9 +412,53 @@ namespace Final_Project_OOP2
                 dgvVoters.DataSource = dt;
 
                 UpdateVoterCount();
-                SaveVotersToAccess(dt);
+                SaveVotersToAccess(dt, selectedElection);
             }
         }
+
+        private void LoadElectionList()
+        {
+            // 1. Clear the ComboBox so we don't get duplicates if we call this twice
+            cmbElectionAssign.Items.Clear();
+            cmbElectionAssign.Items.Add("All"); // Add the default "Show Everyone" option
+
+            // ... then load the rest from the database as you did before ...
+            cmbElectionAssign.SelectedIndex = 0; // Default to "All"
+            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    // 2. Select only the Title column from your Elections table
+                    string sql = "SELECT [ElectionTitle] FROM Elections";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // 3. Add each election title to the ComboBox
+                                cmbElectionAssign.Items.Add(reader["ElectionTitle"].ToString());
+                            }
+                        }
+                    }
+
+                    // 4. Select the first item by default so it's not blank
+                    if (cmbElectionAssign.Items.Count > 0)
+                    {
+                        cmbElectionAssign.SelectedIndex = 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading elections: " + ex.Message);
+                }
+            }
+        }
+
 
         private void LoadCandidatesFromAccess()
         {
@@ -433,45 +489,63 @@ namespace Final_Project_OOP2
         {
             string accessConnString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
 
+            // Get selection (SelectedItem or typed text)
+            string selectedElection = (cmbElectionAssign.SelectedItem ?? cmbElectionAssign.Text)?.ToString().Trim();
+            if (string.IsNullOrEmpty(selectedElection)) selectedElection = "All";
+
             using (OleDbConnection conn = new OleDbConnection(accessConnString))
             {
                 try
                 {
                     conn.Open();
-                    // Fetch all users who have the 'voter' role
-                    string query = "SELECT [Username] AS [ID Number], [StudentName] AS [Full Name], [Email], [YearLevel] AS [Year], [Course], [Password], [UserRole] " +
-                            "FROM Users WHERE [UserRole] = 'voter'";
 
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
+                    // Base query: select voters only
+                    string query = "SELECT [Username] AS [ID Number], [StudentName] AS [Full Name], [Email], [YearLevel] AS [Year], [Course], [Password], [ElectionTitle] " +
+                                   "FROM Users WHERE UCase([UserRole]) = 'VOTER'";
 
-                    // Bind the data to your grid
-                    dgvVoters.DataSource = dt;
-
-                    // Handle the "No voters yet" label visibility
-                    if (dt.Rows.Count > 0)
+                    // If a specific election is chosen, compare trimmed uppercase values to tolerate spacing/case
+                    if (!string.Equals(selectedElection, "All", StringComparison.OrdinalIgnoreCase))
                     {
-                        lblVNoVoters.Visible = false;
-                        lblTotalVotersCount.Text = dt.Rows.Count.ToString();
-                        totalVotersValue.Text = dt.Rows.Count.ToString();
+                        query += " AND UCase(Trim([ElectionTitle])) = UCase(Trim(?))";
                     }
-                    else
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {
-                        lblVNoVoters.Visible = true;
-                        lblTotalVotersCount.Text = "0";
-                        totalVotersValue.Text = "0";
+                        if (!string.Equals(selectedElection, "All", StringComparison.OrdinalIgnoreCase))
+                        {
+                            cmd.Parameters.AddWithValue("?", selectedElection);
+                        }
+
+                        OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        dgvVoters.DataSource = dt;
+                        dgvVoters.Refresh();
+
+                        string countString = dt.Rows.Count.ToString();
+
+                        lblTotalVotersCount.Text = countString;
+
+                        if (lblTotalVoters != null)
+                            lblTotalVoters.Text = countString;
+
+                        // ADDED: Update the dashboard value label
+                        if (totalVotersValue != null)
+                            totalVotersValue.Text = countString;
+
+                        lblVNoVoters.Visible = (dt.Rows.Count == 0);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error loading voters: " + ex.Message);
+                    MessageBox.Show("Database Error: " + ex.Message);
                 }
             }
         }
 
-
-        private void SaveVotersToAccess(DataTable dt)
+       
+        private void SaveVotersToAccess(DataTable dt, string electionTitle)
         {
             string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
 
@@ -492,7 +566,8 @@ namespace Final_Project_OOP2
 
                             if (exists == 0)
                             {
-                                string sql = "INSERT INTO Users ([Username], [StudentName], [Email], [YearLevel], [Course], [Password], [ElectionTitle], [HasVoted], [UserRole]) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                string sql = "INSERT INTO Users ([Username], [StudentName], [Email], [YearLevel], [Course], [Password], [ElectionTitle], [HasVoted], [UserRole]) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                                 using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                                 {
@@ -504,9 +579,10 @@ namespace Final_Project_OOP2
                                     cmd.Parameters.AddWithValue("?", row["Course"].ToString());     // 5
                                     cmd.Parameters.AddWithValue("?", row["Password"].ToString());   // 6
 
+
                                     // Check if this is null or empty. If you haven't created an election yet, this will fail.
                                     string title = string.IsNullOrEmpty(ElectionManager.CurrentTitle) ? "No Election" : ElectionManager.CurrentTitle;
-                                    cmd.Parameters.AddWithValue("?", title);                        // 7
+                                    cmd.Parameters.AddWithValue("?", electionTitle);                        // 7
 
                                     cmd.Parameters.AddWithValue("?", "No");                         // 8
                                     cmd.Parameters.AddWithValue("?", "voter");                      // 9
@@ -516,7 +592,7 @@ namespace Final_Project_OOP2
                             }
                         }
                     }
-                    MessageBox.Show("Voters imported and assigned to: " + ElectionManager.CurrentTitle);
+                    MessageBox.Show("Voters imported and assigned to: " + electionTitle);
                 }
                 catch (Exception ex)
                 {
@@ -559,12 +635,20 @@ namespace Final_Project_OOP2
 
                         if (editPopup.ShowDialog() == DialogResult.OK)
                         {
-                            // 3. Save the values BACK to the grid using the correct property names
+                            // 1. Get the original title as it exists in the database to use as a key
+                            string originalTitle = dgvElections.Rows[e.RowIndex].Cells[0].Value?.ToString();
+
+                            // 2. Perform the database update first
+                            UpdateElectionInAccess(originalTitle, editPopup.ElectionTitle, editPopup.StartDate, editPopup.EndDate);
+
+                            // 3. Update the DataGridView UI to reflect the changes
                             dgvElections.Rows[e.RowIndex].Cells[0].Value = editPopup.ElectionTitle;
                             dgvElections.Rows[e.RowIndex].Cells[2].Value = editPopup.StartDate.ToString("MM/dd/yyyy hh:mm tt");
                             dgvElections.Rows[e.RowIndex].Cells[3].Value = editPopup.EndDate.ToString("MM/dd/yyyy hh:mm tt");
 
+                            // 4. Refresh the rest of the dashboard
                             UpdateDashboardCounters();
+                            LoadElectionsFromAccess(); // Refresh the grid to ensure data sync
                         }
                     }
                 }
@@ -593,6 +677,37 @@ namespace Final_Project_OOP2
                 }
             }
         }
+
+        private void UpdateElectionInAccess(string oldTitle, string newTitle, DateTime start, DateTime end)
+        {
+            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    // Use brackets for reserved Access keywords [Start] and [End]
+                    string sql = "UPDATE Elections SET ElectionTitle = ?, StartDate = ?, EndDate = ? WHERE ElectionTitle = ?";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("?", newTitle);
+                        // Access expects the date format to be readable by the database
+                        cmd.Parameters.AddWithValue("?", start.ToString("MM/dd/yyyy hh:mm tt"));
+                        cmd.Parameters.AddWithValue("?", end.ToString("MM/dd/yyyy hh:mm tt"));
+                        cmd.Parameters.AddWithValue("?", oldTitle);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database Update Error: " + ex.Message);
+                }
+            }
+        }
+
 
         private void DeleteCandidateVotes(string electionTitle, string candidateName)
         {
@@ -859,9 +974,19 @@ namespace Final_Project_OOP2
 
         private void deleteVoters_Click(object sender, EventArgs e)
         {
-            // 1. Ask for confirmation so you don't delete by accident!
-            DialogResult result = MessageBox.Show("Are you sure you want to delete ALL voters from the system? This cannot be undone.",
-                                                  "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            // 1. Get the election currently selected in your filter/assign ComboBox
+            // Make sure to use the correct name of your ComboBox (e.g., cmbFilterElection)
+            string selectedElection = cmbElectionAssign.SelectedItem?.ToString() ?? "";
+
+            if (string.IsNullOrEmpty(selectedElection) || selectedElection == "All")
+            {
+                MessageBox.Show("Please select a specific election first to delete its voters.", "Selection Required");
+                return;
+            }
+
+            // 2. Ask for confirmation including the name of the election
+            DialogResult result = MessageBox.Show($"Are you sure you want to delete ALL voters assigned to '{selectedElection}'? This cannot be undone.",
+                                                  "Confirm Mass Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
@@ -873,22 +998,20 @@ namespace Final_Project_OOP2
                     {
                         accessConn.Open();
 
-                        // SQL to delete only users with the 'voter' role 
-                        // (This keeps your Admin account safe!)
-                        string deleteQuery = "DELETE FROM Users WHERE [UserRole] = 'voter'";
+                        // 3. SQL to delete voters ONLY from the selected election
+                        string deleteQuery = "DELETE FROM Users WHERE [UserRole] = 'voter' AND [ElectionTitle] = ?";
 
                         using (OleDbCommand cmd = new OleDbCommand(deleteQuery, accessConn))
                         {
+                            cmd.Parameters.AddWithValue("?", selectedElection);
+
                             int rowsDeleted = cmd.ExecuteNonQuery();
 
-                            // 2. Clear the Grid in your WinForms UI
-                            dgvVoters.DataSource = null;
-                            dgvVoters.Rows.Clear();
+                            // 4. Refresh the UI
 
-                            // 3. Update the "Total Voters" label to 0
-                            lblTotalVoters.Text = "0";
 
-                            MessageBox.Show($"{rowsDeleted} voters have been deleted from the database.", "Success");
+                            MessageBox.Show($"{rowsDeleted} voters from '{selectedElection}' have been deleted.", "Success");
+                            LoadVotersFromAccess();
                         }
                     }
                     catch (Exception ex)
@@ -1204,7 +1327,7 @@ namespace Final_Project_OOP2
 
         private void pnlDashboard_VisibleChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void pnlElection_VisibleChanged(object sender, EventArgs e)
@@ -1246,8 +1369,8 @@ namespace Final_Project_OOP2
 
                         // SYNC EVERYTHING WITHOUT DELETING THE ELECTION
                         dgvResults.Rows.Clear();      // Clears the Results grid
-                           // This will now show "0" votes in the Dashboard/Management grids
-                           // Updates status labels
+                                                      // This will now show "0" votes in the Dashboard/Management grids
+                                                      // Updates status labels
                     }
                     catch (Exception ex)
                     {
@@ -1306,7 +1429,7 @@ namespace Final_Project_OOP2
                 {
                     conn.Open();
 
-                    // 1. TOP COURSE (Department with most votes)
+                    // 1. TOP COURSE (Added brackets to [Course] for safety)
                     string sqlTopCourse = "SELECT TOP 1 [Course] FROM Votes WHERE ElectionTitle = ? GROUP BY [Course] ORDER BY COUNT(*) DESC";
                     using (OleDbCommand cmd = new OleDbCommand(sqlTopCourse, conn))
                     {
@@ -1328,7 +1451,8 @@ namespace Final_Project_OOP2
                         else { lblLatestVote.Text = "N/A"; }
                     }
 
-                    // 3. LEADING CANDIDATE (Candidate with highest vote count)
+
+                    // 3. LEADING CANDIDATE (Simplified to ensure Jovan can be counted)
                     string sqlLeader = "SELECT TOP 1 CandidateName FROM Votes WHERE ElectionTitle = ? GROUP BY CandidateName ORDER BY COUNT(*) DESC";
                     using (OleDbCommand cmd = new OleDbCommand(sqlLeader, conn))
                     {
@@ -1336,17 +1460,16 @@ namespace Final_Project_OOP2
                         lblLeadingCandidate.Text = cmd.ExecuteScalar()?.ToString() ?? "No Leader";
                     }
 
-                    // --- 4. TOTAL TURNOUT (NEW SECTION) ---
-                    // Count total registered voters (Role='Voter' prevents counting Admin)
-                    string sqlTotalVoters = "SELECT COUNT(*) FROM Users WHERE [Role] = 'Voter'";
+                    // 4. TOTAL TURNOUT (Check if your table uses 'Voter' or another term)
+                    string sqlTotalVoters = "SELECT COUNT(*) FROM Users WHERE [UserRole] = 'Voter'";
                     int totalRegistered = 0;
                     using (OleDbCommand cmdReg = new OleDbCommand(sqlTotalVoters, conn))
                     {
                         totalRegistered = (int)cmdReg.ExecuteScalar();
                     }
 
-                    // Count total unique voters who participated in this election
-                    string sqlVotedCount = "SELECT COUNT(*) FROM (SELECT DISTINCT VoterID FROM Votes WHERE ElectionTitle = ?)";
+                    // Count unique VoterIDs
+                    string sqlVotedCount = "SELECT COUNT(*) FROM (SELECT DISTINCT [VoterID] FROM Votes WHERE ElectionTitle = ?)";
                     int totalVoted = 0;
                     using (OleDbCommand cmdVoted = new OleDbCommand(sqlVotedCount, conn))
                     {
@@ -1354,20 +1477,16 @@ namespace Final_Project_OOP2
                         totalVoted = (int)cmdVoted.ExecuteScalar();
                     }
 
-                    // Calculate and display percentage
                     if (totalRegistered > 0)
                     {
                         double turnoutPercent = ((double)totalVoted / totalRegistered) * 100;
                         lblTurnout.Text = turnoutPercent.ToString("0.0") + "%";
                     }
-                    else
-                    {
-                        lblTurnout.Text = "0%";
-                    }
+                    else { lblTurnout.Text = "0%"; }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Stat Card Error: " + ex.Message);
+                    MessageBox.Show("Error: " + ex.Message);
                 }
             }
         }
@@ -1376,29 +1495,70 @@ namespace Final_Project_OOP2
         {
             string selectedElection = cmbElectionFilter.Text;
 
-            chartCandidateBar.Series[0].Points.Clear();
+            var series = chartCandidateBar.Series[0];
+            series.Points.Clear();
+            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            series.IsValueShownAsLabel = true;
+            series.LegendText = "Votes";
+            series["PointWidth"] = "0.6";
+            series.IsXValueIndexed = true; // ensure X values are treated as indexed categories
+
             chartCandidateBar.Titles.Clear();
-            chartCandidateBar.Titles.Add("Top 5 Overall Candidates");
-            chartCandidateBar.Series[0].LegendText = "Votes";
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
-            using (OleDbConnection conn = new OleDbConnection(connStr))
+
+            chartCandidateBar.Titles.Add("Showing the Top 5 Candidates with the most votes across all positions in " + selectedElection);
+
+            // Ensure chart area exists and configure X axis so each candidate is shown
+            if (chartCandidateBar.ChartAreas.Count > 0)
+            {
+                var area = chartCandidateBar.ChartAreas[0];
+                area.AxisX.Interval = 1;
+                area.AxisX.LabelStyle.Angle = 0;
+                area.AxisX.MajorGrid.Enabled = false;
+                area.AxisY.MajorGrid.Enabled = true;
+                area.RecalculateAxesScale();
+            }
+
+            string connStrLocal = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            using (OleDbConnection conn = new OleDbConnection(connStrLocal))
             {
                 try
                 {
                     conn.Open();
-                    // Get the top 5 candidates by vote count
-                    string sql = "SELECT TOP 5 CandidateName, COUNT(*) as VoteCount " +
+                    string sql = "SELECT TOP 5 CandidateName, COUNT(*) AS VoteCount " +
                                  "FROM Votes WHERE ElectionTitle = ? " +
                                  "GROUP BY CandidateName ORDER BY COUNT(*) DESC";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("?", selectedElection);
-                        OleDbDataReader reader = cmd.ExecuteReader();
 
-                        while (reader.Read())
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd))
                         {
-                            chartCandidateBar.Series[0].Points.AddXY(reader["CandidateName"].ToString(), reader["VoteCount"]);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            // if no rows - clear and exit
+                            if (dt.Rows.Count == 0)
+                            {
+                                series.Points.Clear();
+                                chartCandidateBar.Invalidate();
+                                return;
+                            }
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                string name = row["CandidateName"].ToString();
+                                double votes = 0;
+                                double.TryParse(row["VoteCount"].ToString(), out votes);
+
+                                var pt = new System.Windows.Forms.DataVisualization.Charting.DataPoint
+                                {
+                                    AxisLabel = name,
+                                    YValues = new double[] { votes }
+                                };
+
+                                series.Points.Add(pt);
+                            }
                         }
                     }
                 }
@@ -1406,6 +1566,7 @@ namespace Final_Project_OOP2
                 {
                     Console.WriteLine("Bar Chart Error: " + ex.Message);
                 }
+
             }
         }
 
@@ -1415,6 +1576,20 @@ namespace Final_Project_OOP2
             lblSubtitle.Text = $"Showing results for: {selected} | Data updated as of {DateTime.Now:hh:mm tt}";
         }
 
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbElectionAssign_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadVotersFromAccess();
+        }
+
+        private void cmbElectionAssign_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+            LoadVotersFromAccess();
+        }
     }
 }
 
