@@ -354,25 +354,7 @@ namespace Final_Project_OOP2
             }
         }
 
-        private int GetTotalVotesForElection(string electionTitle)
-        {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
-            using (OleDbConnection conn = new OleDbConnection(connStr))
-            {
-                try
-                {
-                    conn.Open();
-                    // Counts rows in 'Votes' where the 'ElectionTitle' matches
-                    string sql = "SELECT COUNT(*) FROM Votes WHERE ElectionTitle = ?";
-                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("?", electionTitle);
-                        return (int)cmd.ExecuteScalar();
-                    }
-                }
-                catch { return 0; }
-            }
-        }
+     
 
         private void importVoters_Click(object sender, EventArgs e)
         {

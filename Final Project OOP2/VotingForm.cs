@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Final_Project_OOP2
@@ -14,16 +15,28 @@ namespace Final_Project_OOP2
         private string loggedInStudentName;
         private string currentElectionTitle;
 
+        // Added fields to store constructor year/course values
+        private string currentYear;
+        private string currentCourse;
+
         public VotingForm(string voterID, string studentName, string year, string course, string electionTitle)
         {
             InitializeComponent();
             this.currentVoterID = voterID;
             this.loggedInStudentName = studentName;
             this.currentElectionTitle = electionTitle;
+            this.currentYear = year;
+            this.currentCourse = course;
         }
 
         private void VotingForm_Load(object sender, EventArgs e)
         {
+            lblProfileFullName.Text = loggedInStudentName;
+
+            // Use stored fields
+            lblYearLevel.Text = currentYear;
+            lblCourse.Text = currentCourse;
+
             lblElectionTitle.Text = currentElectionTitle;
             // Release any locks from the Dashboard
             OleDbConnection.ReleaseObjectPool();
@@ -62,8 +75,6 @@ namespace Final_Project_OOP2
             }
         }
 
-
-
         private void cmbPositions_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (cmbPositions.SelectedItem == null) return;
@@ -85,41 +96,59 @@ namespace Final_Project_OOP2
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    dt.Columns.Add("ActualImage", typeof(byte[]));
+                    // Ensure ActualImage column is typed as Image
+                    if (!dt.Columns.Contains("ActualImage"))
+                        dt.Columns.Add("ActualImage", typeof(Image));
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        string path = row["ImagePath"].ToString();
-                        if (System.IO.File.Exists(path))
+                        try
                         {
-                            row["ActualImage"] = System.IO.File.ReadAllBytes(path);
+                            string path = row["ImagePath"]?.ToString() ?? "";
+                            if (!string.IsNullOrWhiteSpace(path) && System.IO.File.Exists(path))
+                            {
+                                // Load as Image (dispose handled by DataGridView)
+                                row["ActualImage"] = Image.FromFile(path);
+                            }
+                            else
+                            {
+                                row["ActualImage"] = null;
+                            }
+                        }
+                        catch
+                        {
+                            row["ActualImage"] = null;
                         }
                     }
 
+                    // Keep designer layout: don't auto-generate columns
                     dgvCandidates.AutoGenerateColumns = false;
                     dgvCandidates.DataSource = dt;
 
-                    // --- PHOTO FIX & COLUMN CENTERING ---
-                    if (dgvCandidates.Columns.Contains("colImage"))
+                    // Robust mapping: find appropriate columns by Name or HeaderText and set DataPropertyName
+                    // Image column
+                    foreach (DataGridViewColumn col in dgvCandidates.Columns)
                     {
-                        DataGridViewImageColumn imgCol = (DataGridViewImageColumn)dgvCandidates.Columns["colImage"];
-                        imgCol.DataPropertyName = "ActualImage";
-                        imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
-                        imgCol.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        imgCol.Width = 100;
-                    }
+                        string header = (col.HeaderText ?? "").ToLower();
+                        string name = (col.Name ?? "").ToLower();
 
-                    // Center the Text for Name and Party
-                    if (dgvCandidates.Columns.Contains("FullName"))
-                    {
-                        dgvCandidates.Columns["FullName"].DataPropertyName = "FullName";
-                        dgvCandidates.Columns["FullName"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-
-                    if (dgvCandidates.Columns.Contains("Description"))
-                    {
-                        dgvCandidates.Columns["Description"].DataPropertyName = "Description";
-                        dgvCandidates.Columns["Description"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        if (col is DataGridViewImageColumn || name.Contains("image") || header.Contains("image") || header.Contains("photo") || name.Contains("photo"))
+                        {
+                            col.DataPropertyName = "ActualImage";
+                            ((DataGridViewImageColumn)col).ImageLayout = DataGridViewImageCellLayout.Zoom;
+                            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            col.Width = 100;
+                        }
+                        else if (name.Contains("name") || header.Contains("name") || header.Contains("full name"))
+                        {
+                            col.DataPropertyName = "FullName";
+                            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        else if (name.Contains("desc") || header.Contains("desc") || header.Contains("description") || header.Contains("party"))
+                        {
+                            col.DataPropertyName = "Description";
+                            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
                     }
 
                     // --- ROW HEIGHT FIX ---
@@ -129,6 +158,8 @@ namespace Final_Project_OOP2
                     {
                         row.Height = 100;
                     }
+
+                    dgvCandidates.Refresh();
                 }
                 catch (Exception ex)
                 {
@@ -140,7 +171,6 @@ namespace Final_Project_OOP2
         private void btnProfile_Click(object sender, EventArgs e)
         {
             pnlProfile.BringToFront();
-
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -152,22 +182,14 @@ namespace Final_Project_OOP2
         {
             if (e.RowIndex < 0) return;
 
-            // Check if the click was on the "VOTE" column
-            // Replace "colVote" with whatever the (Name) of your button column is
             if (dgvCandidates.Columns[e.ColumnIndex].Name == "colVote" || dgvCandidates.Columns[e.ColumnIndex].HeaderText == "Action")
             {
-                // USE THE COLUMN INDEXES TO BE SAFE
-                // If 'FullName' is the second column, use index [1]
-                // If 'FullName' has a Designer Name like 'colName', use that.
-
                 string selectedCandidate = "";
-
-                // Safer way: search for the column that is mapped to "FullName"
                 foreach (DataGridViewColumn col in dgvCandidates.Columns)
                 {
                     if (col.DataPropertyName == "FullName")
                     {
-                        selectedCandidate = dgvCandidates.Rows[e.RowIndex].Cells[col.Index].Value.ToString();
+                        selectedCandidate = dgvCandidates.Rows[e.RowIndex].Cells[col.Index].Value?.ToString() ?? "";
                         break;
                     }
                 }
@@ -190,32 +212,27 @@ namespace Final_Project_OOP2
             {
                 MessageBox.Show($"You have already cast your vote for the position of {position}!",
                                 "Duplicate Vote", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Stop the method here
+                return;
             }
 
             OleDbConnection.ReleaseObjectPool();
-            string course = GetVoterCourse(currentVoterID); // Helper method to find the course
+            string course = GetVoterCourse(currentVoterID);
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
                 {
                     conn.Open();
-                    // Using [brackets] for Position and Course as they can be reserved words
                     string sql = "INSERT INTO Votes (VoterID, CandidateName, [Position], ElectionTitle, VoteTimestamp, [Course]) " +
                                  "VALUES (?, ?, ?, ?, ?, ?)";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                     {
-                        // Order matters! Must match the '?' order in the SQL string
                         cmd.Parameters.AddWithValue("?", currentVoterID);
                         cmd.Parameters.AddWithValue("?", candidate);
                         cmd.Parameters.AddWithValue("?", position);
                         cmd.Parameters.AddWithValue("?", currentElectionTitle);
-
-                        // For Access, sometimes sending the string version of the date is safer
                         cmd.Parameters.AddWithValue("?", DateTime.Now.ToString());
-
                         cmd.Parameters.AddWithValue("?", course);
 
                         cmd.ExecuteNonQuery();
@@ -233,7 +250,6 @@ namespace Final_Project_OOP2
                 try
                 {
                     conn.Open();
-                    // Count rows matching this student, this position, and this election
                     string sql = "SELECT COUNT(*) FROM Votes WHERE VoterID = ? AND [Position] = ? AND ElectionTitle = ?";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
@@ -243,12 +259,12 @@ namespace Final_Project_OOP2
                         cmd.Parameters.AddWithValue("?", election);
 
                         int count = (int)cmd.ExecuteScalar();
-                        return count > 0; // Returns true if they already voted
+                        return count > 0;
                     }
                 }
                 catch
                 {
-                    return false; // Default to false if there's a DB error
+                    return false;
                 }
             }
         }
@@ -277,13 +293,9 @@ namespace Final_Project_OOP2
                 return;
             }
 
-            // Success! Update their status and leave
             UpdateVoterStatus();
             MessageBox.Show("Thank you for voting! Your session is now closed.", "Logged Out");
-            // 3. If they finished, mark them as 'HasVoted' in the database
 
-
-            // 4. Proceed to Logout
             this.Hide();
             VotingSytem newLogin = new VotingSytem();
             newLogin.Show();
@@ -296,7 +308,6 @@ namespace Final_Project_OOP2
                 try
                 {
                     conn.Open();
-                    // Access fix: Count the rows of a subquery that finds DISTINCT positions
                     string sql = "SELECT COUNT(*) FROM (SELECT DISTINCT [Position] FROM Candidates WHERE ElectionTitle = ?)";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
@@ -335,7 +346,6 @@ namespace Final_Project_OOP2
                 try
                 {
                     conn.Open();
-                    // Table name is 'Users' and ID column is 'Username' based on your screenshot
                     string sql = "UPDATE [Users] SET [HasVoted] = 'Yes' WHERE [Username] = ?";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
@@ -357,5 +367,3 @@ namespace Final_Project_OOP2
         }
     }
 }
-
-    
