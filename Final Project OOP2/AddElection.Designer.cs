@@ -197,7 +197,7 @@
             txtElectionTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtElectionTitle.Location = new Point(24, 265);
             txtElectionTitle.Name = "txtElectionTitle";
-            txtElectionTitle.Size = new Size(430, 33);
+            txtElectionTitle.Size = new Size(238, 33);
             txtElectionTitle.TabIndex = 4;
             // 
             // label5

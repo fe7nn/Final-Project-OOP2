@@ -30,31 +30,28 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             pnlSidebar = new Panel();
             AnalyticsButton = new Button();
@@ -64,11 +61,25 @@
             LogOut = new Button();
             ResultsButton = new Button();
             ElectionButton = new Button();
-            CandidateButton = new Button();
             PositionsButton = new Button();
             VotersButton = new Button();
             DashButton = new Button();
             pnlMainContainer = new Panel();
+            pnlVoters = new Panel();
+            label22 = new Label();
+            cmbElectionAssign = new ComboBox();
+            txtSearch = new TextBox();
+            lblVNoVoters = new Label();
+            dgvVoters = new DataGridView();
+            colVActions = new DataGridViewButtonColumn();
+            deleteVoters = new Button();
+            imageList2 = new ImageList(components);
+            importVoters = new Button();
+            lblTotalVoters = new Panel();
+            lblTotalVotersCount = new Label();
+            label13 = new Label();
+            label11 = new Label();
+            label8 = new Label();
             pnlDashboard = new Panel();
             lblNoElections = new Label();
             dgvUpcomingElections = new DataGridView();
@@ -83,10 +94,10 @@
             totalVotersValue = new Label();
             label2 = new Label();
             panel3 = new Panel();
-            lblActiveElections = new Label();
+            lblActiveElectionsCount = new Label();
             label3 = new Label();
             panel4 = new Panel();
-            lblCompletedElections = new Label();
+            lblCompletedElectionsCount = new Label();
             label4 = new Label();
             pnlElection = new Panel();
             label6 = new Label();
@@ -109,22 +120,19 @@
             label10 = new Label();
             label9 = new Label();
             pnlAnalytics = new Panel();
-            lblSubtitle = new Label();
-            label18 = new Label();
             panel7 = new Panel();
             lblTurnout = new Label();
             label20 = new Label();
-            chartCandidateBar = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            chartAnalytics = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel6 = new Panel();
             lblLeadingCandidate = new Label();
             label23 = new Label();
             panel5 = new Panel();
             lblLatestVote = new Label();
             label21 = new Label();
-            panel1 = new Panel();
-            lblTopCourse = new Label();
-            label19 = new Label();
+            lblSubtitle1 = new Label();
+            lblSubtitle = new Label();
+            label18 = new Label();
+            chartCandidateBar = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label17 = new Label();
             pnlCandidate = new Panel();
             lblNoCandidates = new Label();
@@ -140,7 +148,6 @@
             label12 = new Label();
             pnlResults = new Panel();
             btnDeleteElection = new Button();
-            imageList2 = new ImageList(components);
             dgvResults = new DataGridView();
             colPosition = new DataGridViewTextBoxColumn();
             colCandidate = new DataGridViewTextBoxColumn();
@@ -148,25 +155,14 @@
             cmbElectionFilter = new ComboBox();
             label16 = new Label();
             label15 = new Label();
-            pnlVoters = new Panel();
-            label22 = new Label();
-            cmbElectionAssign = new ComboBox();
-            txtSearch = new TextBox();
-            lblVNoVoters = new Label();
-            dgvVoters = new DataGridView();
-            colVActions = new DataGridViewButtonColumn();
-            deleteVoters = new Button();
-            importVoters = new Button();
-            lblTotalVoters = new Panel();
-            lblTotalVotersCount = new Label();
-            label13 = new Label();
-            label11 = new Label();
-            label8 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             pnlMainContainer.SuspendLayout();
+            pnlVoters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvVoters).BeginInit();
+            lblTotalVoters.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUpcomingElections).BeginInit();
             panel2.SuspendLayout();
@@ -178,18 +174,13 @@
             ((System.ComponentModel.ISupportInitialize)dgvPositions).BeginInit();
             pnlAnalytics.SuspendLayout();
             panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartCandidateBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartAnalytics).BeginInit();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartCandidateBar).BeginInit();
             pnlCandidate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCandidates).BeginInit();
             pnlResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
-            pnlVoters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvVoters).BeginInit();
-            lblTotalVoters.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -212,7 +203,6 @@
             pnlSidebar.Controls.Add(LogOut);
             pnlSidebar.Controls.Add(ResultsButton);
             pnlSidebar.Controls.Add(ElectionButton);
-            pnlSidebar.Controls.Add(CandidateButton);
             pnlSidebar.Controls.Add(PositionsButton);
             pnlSidebar.Controls.Add(VotersButton);
             pnlSidebar.Controls.Add(DashButton);
@@ -231,7 +221,7 @@
             AnalyticsButton.ImageAlign = ContentAlignment.MiddleLeft;
             AnalyticsButton.ImageKey = "anal.png";
             AnalyticsButton.ImageList = imageList1;
-            AnalyticsButton.Location = new Point(-3, 537);
+            AnalyticsButton.Location = new Point(-3, 475);
             AnalyticsButton.Name = "AnalyticsButton";
             AnalyticsButton.Padding = new Padding(10, 0, 0, 0);
             AnalyticsButton.Size = new Size(247, 54);
@@ -316,7 +306,7 @@
             ResultsButton.ImageAlign = ContentAlignment.MiddleLeft;
             ResultsButton.ImageKey = "results.png";
             ResultsButton.ImageList = imageList1;
-            ResultsButton.Location = new Point(-3, 477);
+            ResultsButton.Location = new Point(0, 415);
             ResultsButton.Name = "ResultsButton";
             ResultsButton.Padding = new Padding(10, 0, 0, 0);
             ResultsButton.Size = new Size(247, 54);
@@ -353,30 +343,6 @@
             ElectionButton.MouseEnter += ElectionButton_MouseHover;
             ElectionButton.MouseLeave += ElectionButton_MouseLeave;
             ElectionButton.MouseHover += ElectionButton_MouseHover;
-            // 
-            // CandidateButton
-            // 
-            CandidateButton.BackColor = Color.Maroon;
-            CandidateButton.FlatAppearance.BorderSize = 0;
-            CandidateButton.FlatStyle = FlatStyle.Flat;
-            CandidateButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CandidateButton.ForeColor = Color.White;
-            CandidateButton.ImageAlign = ContentAlignment.MiddleLeft;
-            CandidateButton.ImageKey = "candidate.png";
-            CandidateButton.ImageList = imageList1;
-            CandidateButton.Location = new Point(0, 415);
-            CandidateButton.Name = "CandidateButton";
-            CandidateButton.Padding = new Padding(10, 0, 0, 0);
-            CandidateButton.Size = new Size(247, 56);
-            CandidateButton.TabIndex = 17;
-            CandidateButton.Text = "          Candidates";
-            CandidateButton.TextAlign = ContentAlignment.MiddleLeft;
-            CandidateButton.TextImageRelation = TextImageRelation.ImageBeforeText;
-            CandidateButton.UseVisualStyleBackColor = false;
-            CandidateButton.Click += CandidateButton_Click;
-            CandidateButton.MouseEnter += CandidateButton_MouseHover;
-            CandidateButton.MouseLeave += CandidateButton_MouseLeave;
-            CandidateButton.MouseHover += CandidateButton_MouseHover;
             // 
             // PositionsButton
             // 
@@ -450,19 +416,227 @@
             // pnlMainContainer
             // 
             pnlMainContainer.BackgroundImage = Properties.Resources.panelbackground;
-            pnlMainContainer.Controls.Add(pnlVoters);
-            pnlMainContainer.Controls.Add(pnlDashboard);
-            pnlMainContainer.Controls.Add(pnlElection);
             pnlMainContainer.Controls.Add(pnlPositions);
             pnlMainContainer.Controls.Add(pnlAnalytics);
             pnlMainContainer.Controls.Add(pnlCandidate);
             pnlMainContainer.Controls.Add(pnlResults);
+            pnlMainContainer.Controls.Add(pnlVoters);
+            pnlMainContainer.Controls.Add(pnlDashboard);
+            pnlMainContainer.Controls.Add(pnlElection);
             pnlMainContainer.Location = new Point(0, 0);
             pnlMainContainer.Margin = new Padding(0);
             pnlMainContainer.Name = "pnlMainContainer";
             pnlMainContainer.Size = new Size(1557, 818);
             pnlMainContainer.TabIndex = 3;
             pnlMainContainer.Paint += pnlMainContainer_Paint;
+            // 
+            // pnlVoters
+            // 
+            pnlVoters.BackgroundImage = Properties.Resources.panelbackground;
+            pnlVoters.Controls.Add(label22);
+            pnlVoters.Controls.Add(cmbElectionAssign);
+            pnlVoters.Controls.Add(txtSearch);
+            pnlVoters.Controls.Add(lblVNoVoters);
+            pnlVoters.Controls.Add(dgvVoters);
+            pnlVoters.Controls.Add(deleteVoters);
+            pnlVoters.Controls.Add(importVoters);
+            pnlVoters.Controls.Add(lblTotalVoters);
+            pnlVoters.Controls.Add(label11);
+            pnlVoters.Controls.Add(label8);
+            pnlVoters.Location = new Point(245, 115);
+            pnlVoters.Name = "pnlVoters";
+            pnlVoters.Size = new Size(1312, 703);
+            pnlVoters.TabIndex = 30;
+            pnlVoters.Paint += pnlVoters_Paint;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.BackColor = Color.Transparent;
+            label22.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.Maroon;
+            label22.Location = new Point(44, 180);
+            label22.Name = "label22";
+            label22.Size = new Size(144, 25);
+            label22.TabIndex = 35;
+            label22.Text = "Select Election:";
+            label22.Click += label22_Click;
+            // 
+            // cmbElectionAssign
+            // 
+            cmbElectionAssign.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbElectionAssign.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbElectionAssign.FormattingEnabled = true;
+            cmbElectionAssign.Location = new Point(194, 177);
+            cmbElectionAssign.Name = "cmbElectionAssign";
+            cmbElectionAssign.Size = new Size(230, 33);
+            cmbElectionAssign.TabIndex = 34;
+            cmbElectionAssign.SelectedIndexChanged += cmbElectionAssign_SelectedIndexChanged_1;
+            cmbElectionAssign.SelectionChangeCommitted += cmbElectionAssign_SelectionChangeCommitted_1;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(452, 130);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(446, 33);
+            txtSearch.TabIndex = 33;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // lblVNoVoters
+            // 
+            lblVNoVoters.AutoSize = true;
+            lblVNoVoters.BackColor = Color.Maroon;
+            lblVNoVoters.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVNoVoters.ForeColor = Color.Black;
+            lblVNoVoters.Location = new Point(572, 467);
+            lblVNoVoters.Name = "lblVNoVoters";
+            lblVNoVoters.Size = new Size(149, 30);
+            lblVNoVoters.TabIndex = 32;
+            lblVNoVoters.Text = "No voters yet.";
+            // 
+            // dgvVoters
+            // 
+            dgvVoters.AllowUserToAddRows = false;
+            dgvVoters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVoters.BackgroundColor = Color.Maroon;
+            dgvVoters.BorderStyle = BorderStyle.None;
+            dgvVoters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.Gold;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.Maroon;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvVoters.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dgvVoters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVoters.Columns.AddRange(new DataGridViewColumn[] { colVActions });
+            dgvVoters.EnableHeadersVisualStyles = false;
+            dgvVoters.GridColor = Color.DarkGray;
+            dgvVoters.Location = new Point(31, 225);
+            dgvVoters.Name = "dgvVoters";
+            dgvVoters.ReadOnly = true;
+            dgvVoters.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvVoters.RowHeadersVisible = false;
+            dgvVoters.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvVoters.Size = new Size(1250, 466);
+            dgvVoters.TabIndex = 31;
+            dgvVoters.CellContentClick += dgvVoters_CellContentClick;
+            // 
+            // colVActions
+            // 
+            colVActions.HeaderText = "Actions";
+            colVActions.Name = "colVActions";
+            colVActions.ReadOnly = true;
+            colVActions.Text = "DELETE";
+            colVActions.UseColumnTextForButtonValue = true;
+            // 
+            // deleteVoters
+            // 
+            deleteVoters.BackColor = Color.Maroon;
+            deleteVoters.BackgroundImageLayout = ImageLayout.None;
+            deleteVoters.FlatAppearance.BorderSize = 0;
+            deleteVoters.FlatStyle = FlatStyle.Flat;
+            deleteVoters.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            deleteVoters.ForeColor = Color.White;
+            deleteVoters.ImageKey = "delete.png";
+            deleteVoters.ImageList = imageList2;
+            deleteVoters.Location = new Point(232, 117);
+            deleteVoters.Name = "deleteVoters";
+            deleteVoters.Size = new Size(181, 53);
+            deleteVoters.TabIndex = 29;
+            deleteVoters.Text = "Delete All Voters";
+            deleteVoters.TextAlign = ContentAlignment.MiddleLeft;
+            deleteVoters.TextImageRelation = TextImageRelation.ImageBeforeText;
+            deleteVoters.UseVisualStyleBackColor = false;
+            deleteVoters.Click += deleteVoters_Click;
+            // 
+            // imageList2
+            // 
+            imageList2.ColorDepth = ColorDepth.Depth32Bit;
+            imageList2.ImageStream = (ImageListStreamer)resources.GetObject("imageList2.ImageStream");
+            imageList2.TransparentColor = Color.Transparent;
+            imageList2.Images.SetKeyName(0, "delete.png");
+            imageList2.Images.SetKeyName(1, "import.png");
+            // 
+            // importVoters
+            // 
+            importVoters.BackColor = SystemColors.Desktop;
+            importVoters.BackgroundImageLayout = ImageLayout.None;
+            importVoters.FlatAppearance.BorderSize = 0;
+            importVoters.FlatStyle = FlatStyle.Flat;
+            importVoters.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            importVoters.ForeColor = Color.White;
+            importVoters.ImageKey = "import.png";
+            importVoters.ImageList = imageList2;
+            importVoters.Location = new Point(44, 117);
+            importVoters.Name = "importVoters";
+            importVoters.Size = new Size(157, 53);
+            importVoters.TabIndex = 28;
+            importVoters.Text = "Import Voters";
+            importVoters.TextAlign = ContentAlignment.MiddleLeft;
+            importVoters.TextImageRelation = TextImageRelation.ImageBeforeText;
+            importVoters.UseVisualStyleBackColor = false;
+            importVoters.Click += importVoters_Click;
+            // 
+            // lblTotalVoters
+            // 
+            lblTotalVoters.BackColor = Color.Transparent;
+            lblTotalVoters.BorderStyle = BorderStyle.Fixed3D;
+            lblTotalVoters.Controls.Add(lblTotalVotersCount);
+            lblTotalVoters.Controls.Add(label13);
+            lblTotalVoters.Location = new Point(987, 16);
+            lblTotalVoters.Name = "lblTotalVoters";
+            lblTotalVoters.Size = new Size(294, 130);
+            lblTotalVoters.TabIndex = 27;
+            // 
+            // lblTotalVotersCount
+            // 
+            lblTotalVotersCount.AutoSize = true;
+            lblTotalVotersCount.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
+            lblTotalVotersCount.ForeColor = Color.Maroon;
+            lblTotalVotersCount.Location = new Point(14, 58);
+            lblTotalVotersCount.Name = "lblTotalVotersCount";
+            lblTotalVotersCount.RightToLeft = RightToLeft.Yes;
+            lblTotalVotersCount.Size = new Size(40, 47);
+            lblTotalVotersCount.TabIndex = 26;
+            lblTotalVotersCount.Text = "0";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Maroon;
+            label13.Location = new Point(3, 9);
+            label13.Name = "label13";
+            label13.Size = new Size(171, 37);
+            label13.TabIndex = 25;
+            label13.Text = "Total Voters";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Maroon;
+            label11.Location = new Point(31, 78);
+            label11.Name = "label11";
+            label11.Size = new Size(709, 25);
+            label11.TabIndex = 25;
+            label11.Text = "Manage and import voters from an Excel file (I.D Number, Name, Year, Course)";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Maroon;
+            label8.Location = new Point(20, 16);
+            label8.Name = "label8";
+            label8.Size = new Size(485, 65);
+            label8.TabIndex = 26;
+            label8.Text = "Voters Management";
             // 
             // pnlDashboard
             // 
@@ -500,14 +674,14 @@
             dgvUpcomingElections.BackgroundColor = Color.Maroon;
             dgvUpcomingElections.BorderStyle = BorderStyle.None;
             dgvUpcomingElections.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Gold;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Maroon;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvUpcomingElections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.Gold;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = Color.Maroon;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgvUpcomingElections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgvUpcomingElections.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUpcomingElections.Columns.AddRange(new DataGridViewColumn[] { colDashTitle, colDashStatus, colDashStart, colDashEnd, colDashVotes });
             dgvUpcomingElections.EnableHeadersVisualStyles = false;
@@ -517,9 +691,9 @@
             dgvUpcomingElections.ReadOnly = true;
             dgvUpcomingElections.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvUpcomingElections.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvUpcomingElections.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvUpcomingElections.RowsDefaultCellStyle = dataGridViewCellStyle16;
             dgvUpcomingElections.RowTemplate.Height = 35;
             dgvUpcomingElections.Size = new Size(1219, 359);
             dgvUpcomingElections.TabIndex = 28;
@@ -527,6 +701,7 @@
             // 
             // colDashTitle
             // 
+            colDashTitle.DataPropertyName = "ElectionTitle";
             colDashTitle.HeaderText = "Title";
             colDashTitle.Name = "colDashTitle";
             colDashTitle.ReadOnly = true;
@@ -534,30 +709,34 @@
             // colDashStatus
             // 
             colDashStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colDashStatus.DataPropertyName = "Status";
             colDashStatus.HeaderText = "Status";
             colDashStatus.Name = "colDashStatus";
             colDashStatus.ReadOnly = true;
             // 
             // colDashStart
             // 
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            colDashStart.DefaultCellStyle = dataGridViewCellStyle3;
+            colDashStart.DataPropertyName = "StartDate";
+            dataGridViewCellStyle14.Format = "G";
+            dataGridViewCellStyle14.NullValue = null;
+            colDashStart.DefaultCellStyle = dataGridViewCellStyle14;
             colDashStart.HeaderText = "Start Date";
             colDashStart.Name = "colDashStart";
             colDashStart.ReadOnly = true;
             // 
             // colDashEnd
             // 
-            dataGridViewCellStyle4.Format = "G";
-            dataGridViewCellStyle4.NullValue = null;
-            colDashEnd.DefaultCellStyle = dataGridViewCellStyle4;
+            colDashEnd.DataPropertyName = "EndDate";
+            dataGridViewCellStyle15.Format = "G";
+            dataGridViewCellStyle15.NullValue = null;
+            colDashEnd.DefaultCellStyle = dataGridViewCellStyle15;
             colDashEnd.HeaderText = "End Date";
             colDashEnd.Name = "colDashEnd";
             colDashEnd.ReadOnly = true;
             // 
             // colDashVotes
             // 
+            colDashVotes.DataPropertyName = "VoteCount";
             colDashVotes.HeaderText = "Total Votes";
             colDashVotes.Name = "colDashVotes";
             colDashVotes.ReadOnly = true;
@@ -625,7 +804,7 @@
             // 
             panel3.BackColor = Color.Transparent;
             panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(lblActiveElections);
+            panel3.Controls.Add(lblActiveElectionsCount);
             panel3.Controls.Add(label3);
             panel3.ForeColor = Color.Maroon;
             panel3.Location = new Point(463, 106);
@@ -633,17 +812,17 @@
             panel3.Size = new Size(294, 130);
             panel3.TabIndex = 27;
             // 
-            // lblActiveElections
+            // lblActiveElectionsCount
             // 
-            lblActiveElections.AutoSize = true;
-            lblActiveElections.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            lblActiveElections.ForeColor = Color.Maroon;
-            lblActiveElections.Location = new Point(17, 58);
-            lblActiveElections.Name = "lblActiveElections";
-            lblActiveElections.RightToLeft = RightToLeft.Yes;
-            lblActiveElections.Size = new Size(40, 47);
-            lblActiveElections.TabIndex = 27;
-            lblActiveElections.Text = "0";
+            lblActiveElectionsCount.AutoSize = true;
+            lblActiveElectionsCount.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
+            lblActiveElectionsCount.ForeColor = Color.Maroon;
+            lblActiveElectionsCount.Location = new Point(17, 58);
+            lblActiveElectionsCount.Name = "lblActiveElectionsCount";
+            lblActiveElectionsCount.RightToLeft = RightToLeft.Yes;
+            lblActiveElectionsCount.Size = new Size(40, 47);
+            lblActiveElectionsCount.TabIndex = 27;
+            lblActiveElectionsCount.Text = "0";
             // 
             // label3
             // 
@@ -660,24 +839,24 @@
             // 
             panel4.BackColor = Color.Transparent;
             panel4.BorderStyle = BorderStyle.Fixed3D;
-            panel4.Controls.Add(lblCompletedElections);
+            panel4.Controls.Add(lblCompletedElectionsCount);
             panel4.Controls.Add(label4);
             panel4.Location = new Point(866, 106);
             panel4.Name = "panel4";
             panel4.Size = new Size(294, 130);
             panel4.TabIndex = 27;
             // 
-            // lblCompletedElections
+            // lblCompletedElectionsCount
             // 
-            lblCompletedElections.AutoSize = true;
-            lblCompletedElections.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            lblCompletedElections.ForeColor = Color.Maroon;
-            lblCompletedElections.Location = new Point(17, 58);
-            lblCompletedElections.Name = "lblCompletedElections";
-            lblCompletedElections.RightToLeft = RightToLeft.Yes;
-            lblCompletedElections.Size = new Size(40, 47);
-            lblCompletedElections.TabIndex = 28;
-            lblCompletedElections.Text = "0";
+            lblCompletedElectionsCount.AutoSize = true;
+            lblCompletedElectionsCount.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
+            lblCompletedElectionsCount.ForeColor = Color.Maroon;
+            lblCompletedElectionsCount.Location = new Point(17, 58);
+            lblCompletedElectionsCount.Name = "lblCompletedElectionsCount";
+            lblCompletedElectionsCount.RightToLeft = RightToLeft.Yes;
+            lblCompletedElectionsCount.Size = new Size(40, 47);
+            lblCompletedElectionsCount.TabIndex = 28;
+            lblCompletedElectionsCount.Text = "0";
             // 
             // label4
             // 
@@ -737,14 +916,14 @@
             dgvElections.BackgroundColor = Color.Maroon;
             dgvElections.BorderStyle = BorderStyle.None;
             dgvElections.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.Gold;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.Maroon;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvElections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.Gold;
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle17.ForeColor = Color.Maroon;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dgvElections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dgvElections.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvElections.Columns.AddRange(new DataGridViewColumn[] { colETitle, colEStatus, colEStart, colEEnd, colEActions });
             dgvElections.EnableHeadersVisualStyles = false;
@@ -754,9 +933,9 @@
             dgvElections.ReadOnly = true;
             dgvElections.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvElections.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvElections.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvElections.RowsDefaultCellStyle = dataGridViewCellStyle19;
             dgvElections.RowTemplate.Height = 35;
             dgvElections.Size = new Size(1250, 312);
             dgvElections.TabIndex = 29;
@@ -765,34 +944,38 @@
             // 
             // colETitle
             // 
+            colETitle.DataPropertyName = "ElectionTitle";
             colETitle.HeaderText = "Title";
             colETitle.Name = "colETitle";
             colETitle.ReadOnly = true;
             // 
             // colEStatus
             // 
+            colEStatus.DataPropertyName = "Status";
             colEStatus.HeaderText = "Status";
             colEStatus.Name = "colEStatus";
             colEStatus.ReadOnly = true;
             // 
             // colEStart
             // 
+            colEStart.DataPropertyName = "StartDate";
             colEStart.HeaderText = "Start";
             colEStart.Name = "colEStart";
             colEStart.ReadOnly = true;
             // 
             // colEEnd
             // 
+            colEEnd.DataPropertyName = "EndDate";
             colEEnd.HeaderText = "End";
             colEEnd.Name = "colEEnd";
             colEEnd.ReadOnly = true;
             // 
             // colEActions
             // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.Padding = new Padding(5);
-            colEActions.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle18.Padding = new Padding(5);
+            colEActions.DefaultCellStyle = dataGridViewCellStyle18;
             colEActions.HeaderText = "Actions";
             colEActions.Name = "colEActions";
             colEActions.ReadOnly = true;
@@ -861,14 +1044,14 @@
             dgvPositions.BorderStyle = BorderStyle.None;
             dgvPositions.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvPositions.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.Gold;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.Maroon;
-            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvPositions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gold;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Maroon;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvPositions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvPositions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPositions.Columns.AddRange(new DataGridViewColumn[] { colElection, colPos, colPActions });
             dgvPositions.EnableHeadersVisualStyles = false;
@@ -878,9 +1061,9 @@
             dgvPositions.ReadOnly = true;
             dgvPositions.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvPositions.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvPositions.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvPositions.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvPositions.RowTemplate.Height = 50;
             dgvPositions.RowTemplate.ReadOnly = true;
             dgvPositions.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -891,9 +1074,8 @@
             // 
             // colElection
             // 
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Padding = new Padding(230, 10, 10, 10);
-            colElection.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colElection.DefaultCellStyle = dataGridViewCellStyle2;
             colElection.FillWeight = 150F;
             colElection.HeaderText = "Election";
             colElection.Name = "colElection";
@@ -901,8 +1083,9 @@
             // 
             // colPos
             // 
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            colPos.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            colPos.DefaultCellStyle = dataGridViewCellStyle3;
             colPos.HeaderText = "Positions";
             colPos.Name = "colPos";
             colPos.ReadOnly = true;
@@ -912,7 +1095,7 @@
             colPActions.HeaderText = "Actions";
             colPActions.Name = "colPActions";
             colPActions.ReadOnly = true;
-            colPActions.Text = "                              Edit   |   Delete";
+            colPActions.Text = "Edit   |   Delete";
             colPActions.UseColumnTextForButtonValue = true;
             // 
             // addPositionOpenForm
@@ -958,14 +1141,13 @@
             // pnlAnalytics
             // 
             pnlAnalytics.BackgroundImage = Properties.Resources.panelbackground;
-            pnlAnalytics.Controls.Add(lblSubtitle);
-            pnlAnalytics.Controls.Add(label18);
             pnlAnalytics.Controls.Add(panel7);
-            pnlAnalytics.Controls.Add(chartCandidateBar);
-            pnlAnalytics.Controls.Add(chartAnalytics);
             pnlAnalytics.Controls.Add(panel6);
             pnlAnalytics.Controls.Add(panel5);
-            pnlAnalytics.Controls.Add(panel1);
+            pnlAnalytics.Controls.Add(lblSubtitle1);
+            pnlAnalytics.Controls.Add(lblSubtitle);
+            pnlAnalytics.Controls.Add(label18);
+            pnlAnalytics.Controls.Add(chartCandidateBar);
             pnlAnalytics.Controls.Add(label17);
             pnlAnalytics.Location = new Point(245, 115);
             pnlAnalytics.Name = "pnlAnalytics";
@@ -973,41 +1155,15 @@
             pnlAnalytics.TabIndex = 34;
             pnlAnalytics.Paint += pnlAnalytics_Paint;
             // 
-            // lblSubtitle
-            // 
-            lblSubtitle.AutoSize = true;
-            lblSubtitle.BackColor = Color.Transparent;
-            lblSubtitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSubtitle.ForeColor = Color.Maroon;
-            lblSubtitle.Location = new Point(28, 117);
-            lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(281, 37);
-            lblSubtitle.TabIndex = 36;
-            lblSubtitle.Text = "Analytics Dashboard";
-            lblSubtitle.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.BackColor = Color.Transparent;
-            label18.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.Maroon;
-            label18.Location = new Point(28, 81);
-            label18.Name = "label18";
-            label18.Size = new Size(472, 25);
-            label18.TabIndex = 35;
-            label18.Text = "Real-time election insights and participation metrics";
-            // 
             // panel7
             // 
             panel7.BackColor = Color.Transparent;
-            panel7.BorderStyle = BorderStyle.Fixed3D;
             panel7.Controls.Add(lblTurnout);
             panel7.Controls.Add(label20);
-            panel7.Location = new Point(810, 508);
+            panel7.Location = new Point(463, 117);
             panel7.Name = "panel7";
-            panel7.Size = new Size(471, 130);
-            panel7.TabIndex = 34;
+            panel7.Size = new Size(374, 130);
+            panel7.TabIndex = 39;
             // 
             // lblTurnout
             // 
@@ -1032,55 +1188,15 @@
             label20.TabIndex = 25;
             label20.Text = "Total Turnout %";
             // 
-            // chartCandidateBar
-            // 
-            chartCandidateBar.BackColor = Color.Transparent;
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.Name = "ChartArea1";
-            chartCandidateBar.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chartCandidateBar.Legends.Add(legend1);
-            chartCandidateBar.Location = new Point(421, 186);
-            chartCandidateBar.Name = "chartCandidateBar";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 2;
-            chartCandidateBar.Series.Add(series1);
-            chartCandidateBar.Size = new Size(300, 300);
-            chartCandidateBar.TabIndex = 33;
-            chartCandidateBar.Text = "chart1";
-            // 
-            // chartAnalytics
-            // 
-            chartAnalytics.BackColor = Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            chartAnalytics.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chartAnalytics.Legends.Add(legend2);
-            chartAnalytics.Location = new Point(58, 186);
-            chartAnalytics.Name = "chartAnalytics";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartAnalytics.Series.Add(series2);
-            chartAnalytics.Size = new Size(300, 300);
-            chartAnalytics.TabIndex = 32;
-            chartAnalytics.Text = "chart1";
-            // 
             // panel6
             // 
             panel6.BackColor = Color.Transparent;
-            panel6.BorderStyle = BorderStyle.Fixed3D;
             panel6.Controls.Add(lblLeadingCandidate);
             panel6.Controls.Add(label23);
-            panel6.Location = new Point(810, 356);
+            panel6.Location = new Point(36, 117);
             panel6.Name = "panel6";
-            panel6.Size = new Size(471, 130);
-            panel6.TabIndex = 31;
+            panel6.Size = new Size(374, 130);
+            panel6.TabIndex = 37;
             // 
             // lblLeadingCandidate
             // 
@@ -1108,13 +1224,12 @@
             // panel5
             // 
             panel5.BackColor = Color.Transparent;
-            panel5.BorderStyle = BorderStyle.Fixed3D;
             panel5.Controls.Add(lblLatestVote);
             panel5.Controls.Add(label21);
-            panel5.Location = new Point(810, 53);
+            panel5.Location = new Point(856, 117);
             panel5.Name = "panel5";
-            panel5.Size = new Size(471, 130);
-            panel5.TabIndex = 31;
+            panel5.Size = new Size(444, 130);
+            panel5.TabIndex = 38;
             // 
             // lblLatestVote
             // 
@@ -1139,39 +1254,66 @@
             label21.TabIndex = 25;
             label21.Text = "Latest Vote Timestamp";
             // 
-            // panel1
+            // lblSubtitle1
             // 
-            panel1.BackColor = Color.Transparent;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(lblTopCourse);
-            panel1.Controls.Add(label19);
-            panel1.Location = new Point(810, 206);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(471, 130);
-            panel1.TabIndex = 30;
+            lblSubtitle1.AutoSize = true;
+            lblSubtitle1.BackColor = Color.Transparent;
+            lblSubtitle1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubtitle1.ForeColor = Color.Maroon;
+            lblSubtitle1.Location = new Point(762, 64);
+            lblSubtitle1.Name = "lblSubtitle1";
+            lblSubtitle1.Size = new Size(281, 37);
+            lblSubtitle1.TabIndex = 36;
+            lblSubtitle1.Text = "Analytics Dashboard";
+            lblSubtitle1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblTopCourse
+            // lblSubtitle
             // 
-            lblTopCourse.AutoSize = true;
-            lblTopCourse.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            lblTopCourse.ForeColor = Color.Maroon;
-            lblTopCourse.Location = new Point(14, 58);
-            lblTopCourse.Name = "lblTopCourse";
-            lblTopCourse.RightToLeft = RightToLeft.Yes;
-            lblTopCourse.Size = new Size(40, 47);
-            lblTopCourse.TabIndex = 26;
-            lblTopCourse.Text = "0";
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.BackColor = Color.Transparent;
+            lblSubtitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubtitle.ForeColor = Color.Maroon;
+            lblSubtitle.Location = new Point(762, 27);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(281, 37);
+            lblSubtitle.TabIndex = 36;
+            lblSubtitle.Text = "Analytics Dashboard";
+            lblSubtitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label19
+            // label18
             // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.Maroon;
-            label19.Location = new Point(3, 9);
-            label19.Name = "label19";
-            label19.Size = new Size(160, 37);
-            label19.TabIndex = 25;
-            label19.Text = "Top Course";
+            label18.AutoSize = true;
+            label18.BackColor = Color.Transparent;
+            label18.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.ForeColor = Color.Maroon;
+            label18.Location = new Point(28, 81);
+            label18.Name = "label18";
+            label18.Size = new Size(472, 25);
+            label18.TabIndex = 35;
+            label18.Text = "Real-time election insights and participation metrics";
+            // 
+            // chartCandidateBar
+            // 
+            chartCandidateBar.BackColor = Color.Transparent;
+            chartArea1.Area3DStyle.Enable3D = true;
+            chartArea1.Area3DStyle.Inclination = 45;
+            chartArea1.Area3DStyle.Rotation = 15;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.Name = "ChartArea1";
+            chartCandidateBar.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartCandidateBar.Legends.Add(legend1);
+            chartCandidateBar.Location = new Point(28, 278);
+            chartCandidateBar.Name = "chartCandidateBar";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.YValuesPerPoint = 2;
+            chartCandidateBar.Series.Add(series1);
+            chartCandidateBar.Size = new Size(1253, 335);
+            chartCandidateBar.TabIndex = 33;
+            chartCandidateBar.Text = "chart1";
             // 
             // label17
             // 
@@ -1218,38 +1360,38 @@
             dgvCandidates.BackgroundColor = Color.Maroon;
             dgvCandidates.BorderStyle = BorderStyle.None;
             dgvCandidates.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.Gold;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle13.ForeColor = Color.Maroon;
-            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dgvCandidates.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.Gold;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Maroon;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvCandidates.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvCandidates.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCandidates.Columns.AddRange(new DataGridViewColumn[] { colPhoto, colName, colCElection, colCPosition, colDescription, colActions });
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = SystemColors.Window;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle15.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dgvCandidates.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvCandidates.DefaultCellStyle = dataGridViewCellStyle7;
             dgvCandidates.EnableHeadersVisualStyles = false;
             dgvCandidates.GridColor = Color.DarkGray;
             dgvCandidates.Location = new Point(31, 203);
             dgvCandidates.Name = "dgvCandidates";
             dgvCandidates.ReadOnly = true;
             dgvCandidates.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.Control;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.GrayText;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dgvCandidates.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Control;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.GrayText;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dgvCandidates.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dgvCandidates.RowHeadersVisible = false;
             dgvCandidates.RowTemplate.Height = 80;
             dgvCandidates.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -1299,10 +1441,10 @@
             // 
             // colActions
             // 
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle14.Padding = new Padding(5);
-            colActions.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.Padding = new Padding(5);
+            colActions.DefaultCellStyle = dataGridViewCellStyle6;
             colActions.HeaderText = "Actions";
             colActions.Name = "colActions";
             colActions.ReadOnly = true;
@@ -1383,14 +1525,6 @@
             btnDeleteElection.UseVisualStyleBackColor = false;
             btnDeleteElection.Click += btnDeleteElection_Click;
             // 
-            // imageList2
-            // 
-            imageList2.ColorDepth = ColorDepth.Depth32Bit;
-            imageList2.ImageStream = (ImageListStreamer)resources.GetObject("imageList2.ImageStream");
-            imageList2.TransparentColor = Color.Transparent;
-            imageList2.Images.SetKeyName(0, "delete.png");
-            imageList2.Images.SetKeyName(1, "import.png");
-            // 
             // dgvResults
             // 
             dgvResults.AllowUserToAddRows = false;
@@ -1400,24 +1534,24 @@
             dgvResults.BorderStyle = BorderStyle.None;
             dgvResults.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.Gold;
-            dataGridViewCellStyle17.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle17.ForeColor = Color.Maroon;
-            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.Gold;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Maroon;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResults.Columns.AddRange(new DataGridViewColumn[] { colPosition, colCandidate, colVotes });
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = SystemColors.Window;
-            dataGridViewCellStyle18.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle18.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
-            dgvResults.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dgvResults.DefaultCellStyle = dataGridViewCellStyle10;
             dgvResults.EnableHeadersVisualStyles = false;
             dgvResults.GridColor = Color.DarkGray;
             dgvResults.Location = new Point(31, 145);
@@ -1425,9 +1559,9 @@
             dgvResults.ReadOnly = true;
             dgvResults.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvResults.RowHeadersVisible = false;
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvResults.RowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvResults.RowsDefaultCellStyle = dataGridViewCellStyle11;
             dgvResults.RowTemplate.Height = 50;
             dgvResults.RowTemplate.ReadOnly = true;
             dgvResults.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -1492,205 +1626,6 @@
             label15.TabIndex = 27;
             label15.Text = "Election Results";
             // 
-            // pnlVoters
-            // 
-            pnlVoters.BackgroundImage = Properties.Resources.panelbackground;
-            pnlVoters.Controls.Add(label22);
-            pnlVoters.Controls.Add(cmbElectionAssign);
-            pnlVoters.Controls.Add(txtSearch);
-            pnlVoters.Controls.Add(lblVNoVoters);
-            pnlVoters.Controls.Add(dgvVoters);
-            pnlVoters.Controls.Add(deleteVoters);
-            pnlVoters.Controls.Add(importVoters);
-            pnlVoters.Controls.Add(lblTotalVoters);
-            pnlVoters.Controls.Add(label11);
-            pnlVoters.Controls.Add(label8);
-            pnlVoters.Location = new Point(245, 115);
-            pnlVoters.Name = "pnlVoters";
-            pnlVoters.Size = new Size(1312, 703);
-            pnlVoters.TabIndex = 30;
-            pnlVoters.Paint += pnlVoters_Paint;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.BackColor = Color.Transparent;
-            label22.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.Maroon;
-            label22.Location = new Point(44, 180);
-            label22.Name = "label22";
-            label22.Size = new Size(144, 25);
-            label22.TabIndex = 35;
-            label22.Text = "Select Election:";
-            label22.Click += label22_Click;
-            // 
-            // cmbElectionAssign
-            // 
-            cmbElectionAssign.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbElectionAssign.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbElectionAssign.FormattingEnabled = true;
-            cmbElectionAssign.Location = new Point(185, 177);
-            cmbElectionAssign.Name = "cmbElectionAssign";
-            cmbElectionAssign.Size = new Size(230, 33);
-            cmbElectionAssign.TabIndex = 34;
-            cmbElectionAssign.SelectionChangeCommitted += cmbElectionAssign_SelectionChangeCommitted_1;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(452, 130);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(446, 33);
-            txtSearch.TabIndex = 33;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
-            // lblVNoVoters
-            // 
-            lblVNoVoters.AutoSize = true;
-            lblVNoVoters.BackColor = Color.Maroon;
-            lblVNoVoters.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblVNoVoters.ForeColor = Color.Black;
-            lblVNoVoters.Location = new Point(572, 467);
-            lblVNoVoters.Name = "lblVNoVoters";
-            lblVNoVoters.Size = new Size(149, 30);
-            lblVNoVoters.TabIndex = 32;
-            lblVNoVoters.Text = "No voters yet.";
-            // 
-            // dgvVoters
-            // 
-            dgvVoters.AllowUserToAddRows = false;
-            dgvVoters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvVoters.BackgroundColor = Color.Maroon;
-            dgvVoters.BorderStyle = BorderStyle.None;
-            dgvVoters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Gold;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Maroon;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvVoters.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvVoters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVoters.Columns.AddRange(new DataGridViewColumn[] { colVActions });
-            dgvVoters.EnableHeadersVisualStyles = false;
-            dgvVoters.GridColor = Color.DarkGray;
-            dgvVoters.Location = new Point(31, 225);
-            dgvVoters.Name = "dgvVoters";
-            dgvVoters.ReadOnly = true;
-            dgvVoters.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvVoters.RowHeadersVisible = false;
-            dgvVoters.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dgvVoters.Size = new Size(1250, 466);
-            dgvVoters.TabIndex = 31;
-            dgvVoters.CellContentClick += dgvVoters_CellContentClick;
-            // 
-            // colVActions
-            // 
-            colVActions.HeaderText = "Actions";
-            colVActions.Name = "colVActions";
-            colVActions.ReadOnly = true;
-            colVActions.Text = "DELETE";
-            colVActions.UseColumnTextForButtonValue = true;
-            // 
-            // deleteVoters
-            // 
-            deleteVoters.BackColor = Color.Maroon;
-            deleteVoters.BackgroundImageLayout = ImageLayout.None;
-            deleteVoters.FlatAppearance.BorderSize = 0;
-            deleteVoters.FlatStyle = FlatStyle.Flat;
-            deleteVoters.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deleteVoters.ForeColor = Color.White;
-            deleteVoters.ImageKey = "delete.png";
-            deleteVoters.ImageList = imageList2;
-            deleteVoters.Location = new Point(232, 117);
-            deleteVoters.Name = "deleteVoters";
-            deleteVoters.Size = new Size(181, 53);
-            deleteVoters.TabIndex = 29;
-            deleteVoters.Text = "Delete All Voters";
-            deleteVoters.TextAlign = ContentAlignment.MiddleLeft;
-            deleteVoters.TextImageRelation = TextImageRelation.ImageBeforeText;
-            deleteVoters.UseVisualStyleBackColor = false;
-            deleteVoters.Click += deleteVoters_Click;
-            // 
-            // importVoters
-            // 
-            importVoters.BackColor = SystemColors.Desktop;
-            importVoters.BackgroundImageLayout = ImageLayout.None;
-            importVoters.FlatAppearance.BorderSize = 0;
-            importVoters.FlatStyle = FlatStyle.Flat;
-            importVoters.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            importVoters.ForeColor = Color.White;
-            importVoters.ImageKey = "import.png";
-            importVoters.ImageList = imageList2;
-            importVoters.Location = new Point(44, 117);
-            importVoters.Name = "importVoters";
-            importVoters.Size = new Size(157, 53);
-            importVoters.TabIndex = 28;
-            importVoters.Text = "Import Voters";
-            importVoters.TextAlign = ContentAlignment.MiddleLeft;
-            importVoters.TextImageRelation = TextImageRelation.ImageBeforeText;
-            importVoters.UseVisualStyleBackColor = false;
-            importVoters.Click += importVoters_Click;
-            // 
-            // lblTotalVoters
-            // 
-            lblTotalVoters.BackColor = Color.Transparent;
-            lblTotalVoters.BorderStyle = BorderStyle.Fixed3D;
-            lblTotalVoters.Controls.Add(lblTotalVotersCount);
-            lblTotalVoters.Controls.Add(label13);
-            lblTotalVoters.Location = new Point(987, 16);
-            lblTotalVoters.Name = "lblTotalVoters";
-            lblTotalVoters.Size = new Size(294, 130);
-            lblTotalVoters.TabIndex = 27;
-            // 
-            // lblTotalVotersCount
-            // 
-            lblTotalVotersCount.AutoSize = true;
-            lblTotalVotersCount.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            lblTotalVotersCount.ForeColor = Color.Maroon;
-            lblTotalVotersCount.Location = new Point(14, 58);
-            lblTotalVotersCount.Name = "lblTotalVotersCount";
-            lblTotalVotersCount.RightToLeft = RightToLeft.Yes;
-            lblTotalVotersCount.Size = new Size(40, 47);
-            lblTotalVotersCount.TabIndex = 26;
-            lblTotalVotersCount.Text = "0";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Maroon;
-            label13.Location = new Point(3, 9);
-            label13.Name = "label13";
-            label13.Size = new Size(171, 37);
-            label13.TabIndex = 25;
-            label13.Text = "Total Voters";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.Maroon;
-            label11.Location = new Point(31, 78);
-            label11.Name = "label11";
-            label11.Size = new Size(709, 25);
-            label11.TabIndex = 25;
-            label11.Text = "Manage and import voters from an Excel file (I.D Number, Name, Year, Course)";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Maroon;
-            label8.Location = new Point(20, 16);
-            label8.Name = "label8";
-            label8.Size = new Size(485, 65);
-            label8.TabIndex = 26;
-            label8.Text = "Voters Management";
-            // 
             // timer1
             // 
             timer1.Interval = 1000;
@@ -1714,6 +1649,11 @@
             pnlSidebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             pnlMainContainer.ResumeLayout(false);
+            pnlVoters.ResumeLayout(false);
+            pnlVoters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvVoters).EndInit();
+            lblTotalVoters.ResumeLayout(false);
+            lblTotalVoters.PerformLayout();
             pnlDashboard.ResumeLayout(false);
             pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUpcomingElections).EndInit();
@@ -1733,25 +1673,17 @@
             pnlAnalytics.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)chartCandidateBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartAnalytics).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartCandidateBar).EndInit();
             pnlCandidate.ResumeLayout(false);
             pnlCandidate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCandidates).EndInit();
             pnlResults.ResumeLayout(false);
             pnlResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
-            pnlVoters.ResumeLayout(false);
-            pnlVoters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvVoters).EndInit();
-            lblTotalVoters.ResumeLayout(false);
-            lblTotalVoters.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1762,9 +1694,6 @@
         private Button VotersButton;
         private Button DashButton;
         private Button ResultsButton;
-        private Button ElectionButton;
-        private Button CandidateButton;
-        private Button PositionsButton;
         private Button LogOut;
         private ImageList imageList1;
         private PictureBox pictureBox3;
@@ -1822,16 +1751,6 @@
         private DataGridViewTextBoxColumn colPos;
         private DataGridViewButtonColumn colPActions;
         private System.Windows.Forms.Timer timer1;
-        private DataGridViewTextBoxColumn colDashTitle;
-        private DataGridViewTextBoxColumn colDashStatus;
-        private DataGridViewTextBoxColumn colDashStart;
-        private DataGridViewTextBoxColumn colDashEnd;
-        private DataGridViewTextBoxColumn colDashVotes;
-        private DataGridViewTextBoxColumn colETitle;
-        private DataGridViewTextBoxColumn colEStatus;
-        private DataGridViewTextBoxColumn colEStart;
-        private DataGridViewTextBoxColumn colEEnd;
-        private DataGridViewButtonColumn colEActions;
         private Label lblNoPositions;
         private Panel pnlResults;
         private Label label16;
@@ -1853,23 +1772,34 @@
         private DataGridViewTextBoxColumn colVotes;
         private Button btnDeleteElection;
         private Label label17;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCandidateBar;
+        private Label lblSubtitle;
+        private Label label18;
+        private ComboBox cmbElectionAssign;
+        private Label label22;
+        private Button ElectionButton;
+        private Button PositionsButton;
+        private Label lblActiveElectionsCount;
+        private Label lblCompletedElectionsCount;
+        private DataGridViewTextBoxColumn colDashTitle;
+        private DataGridViewTextBoxColumn colDashStatus;
+        private DataGridViewTextBoxColumn colDashStart;
+        private DataGridViewTextBoxColumn colDashEnd;
+        private DataGridViewTextBoxColumn colDashVotes;
+        private DataGridViewTextBoxColumn colETitle;
+        private DataGridViewTextBoxColumn colEStatus;
+        private DataGridViewTextBoxColumn colEStart;
+        private DataGridViewTextBoxColumn colEEnd;
+        private DataGridViewButtonColumn colEActions;
+        private Label lblSubtitle1;
+        private Panel panel7;
+        private Label lblTurnout;
+        private Label label20;
         private Panel panel6;
         private Label lblLeadingCandidate;
         private Label label23;
         private Panel panel5;
         private Label lblLatestVote;
         private Label label21;
-        private Panel panel1;
-        private Label lblTopCourse;
-        private Label label19;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartAnalytics;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartCandidateBar;
-        private Panel panel7;
-        private Label lblTurnout;
-        private Label label20;
-        private Label lblSubtitle;
-        private Label label18;
-        private ComboBox cmbElectionAssign;
-        private Label label22;
     }
 }

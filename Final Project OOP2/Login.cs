@@ -47,49 +47,64 @@ namespace Final_Project_OOP2
                 if (conn.State == ConnectionState.Open) conn.Close();
                 conn.Open();
 
-                // UPDATED: Changed [ElectionStar] to [ElectionStart] to match your screenshot
-                string query = "SELECT [UserRole], [Username], [StudentName], [YearLevel], [Course], [ElectionTitle] FROM [Users] WHERE [Username] = ? AND [Password] = ?";
+                // --- STEP 1: CHECK THE ADMIN TABLE (Admins & Presidents) ---
+                string adminQuery = "SELECT [UserRole], [Username], [StudentName], [AssignedOrg] FROM [Admin] WHERE [Username] = ? AND [Password] = ?";
+                OleDbCommand adminCmd = new OleDbCommand(adminQuery, conn);
+                adminCmd.Parameters.AddWithValue("@u", txtUsername.Text);
+                adminCmd.Parameters.AddWithValue("@p", txtPassword.Text);
 
-                OleDbCommand cmd = new OleDbCommand(query, conn);
+                OleDbDataReader adminReader = adminCmd.ExecuteReader();
 
-                // Access requires parameters in the exact order of the '?' in the query
-                cmd.Parameters.AddWithValue("@p1", txtUsername.Text); // For [Username]
-                cmd.Parameters.AddWithValue("@p2", txtPassword.Text); // For [Password]
-                 
-                OleDbDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
+                if (adminReader.Read())
                 {
-                    string role = reader["UserRole"]?.ToString() ?? "voter";
-                    string userID = reader["Username"]?.ToString() ?? "User";
-                    string studentName = reader["StudentName"]?.ToString() ?? "Student";
-                    string year = reader["YearLevel"]?.ToString() ?? "";
-                    string course = reader["Course"]?.ToString() ?? "";
-                    string studentElection = reader["ElectionTitle"].ToString();
+                    string role = adminReader["UserRole"]?.ToString().Trim() ?? "";
+                    string userID = adminReader["Username"]?.ToString() ?? "";
+                    string name = adminReader["StudentName"]?.ToString() ?? "";
+                    string assignedOrg = adminReader["AssignedOrg"]?.ToString() ?? "";
 
-
-
-                    MessageBox.Show($"Login Successful! Welcome, {studentName}.");
-
-                    if (role.ToLower() == "admin")
+                    if (role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
                     {
+                        MessageBox.Show($"Access Granted: Welcome Adviser {name}.");
                         AdminDashboard adminForm = new AdminDashboard(userID);
-                        adminForm.RefreshAllData();
                         adminForm.Show();
                         this.Hide();
+                        return; // Stop here
                     }
-                    else
+                    else if (role.Equals("President", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Now passing the correct data to your VoterDashboard
-                        VoterDashboard vDash = new VoterDashboard(userID, studentName, year, course, studentElection);
-                        vDash.Show();
+                        MessageBox.Show($"Access Granted: Welcome {assignedOrg} President {name}.");
+                        OrgPresidentDashboard presDash = new OrgPresidentDashboard(userID, assignedOrg);
+                        presDash.Show();
                         this.Hide();
+                        return; // Stop here
                     }
                 }
-                else
+                adminReader.Close();
+
+                // --- STEP 2: CHECK THE VOTERS TABLE (Students) ---
+                // Assuming your Voters table has these columns based on your previous screen
+                string voterQuery = "SELECT [Username], [StudentName], [YearLevel], [Course], [ElectionTitle] FROM [Voters] WHERE [Username] = ? AND [Password] = ?";
+                OleDbCommand voterCmd = new OleDbCommand(voterQuery, conn);
+                voterCmd.Parameters.AddWithValue("@u", txtUsername.Text);
+                voterCmd.Parameters.AddWithValue("@p", txtPassword.Text);
+
+                OleDbDataReader voterReader = voterCmd.ExecuteReader();
+
+                if (voterReader.Read())
                 {
-                    MessageBox.Show("Invalid Username or Password.");
+                    string userID = voterReader["Username"]?.ToString() ?? "";
+                    string name = voterReader["StudentName"]?.ToString() ?? "";
+                    string year = voterReader["YearLevel"]?.ToString() ?? "";
+                    string course = voterReader["Course"]?.ToString() ?? "";
+                    string election = voterReader["ElectionTitle"]?.ToString() ?? "";
+
+                    MessageBox.Show($"Login Successful! Welcome, {name}.");
+                    VoterDashboard vDash = new VoterDashboard(userID, name, year, course, election);
+                    vDash.Show();
+                    this.Hide();
                 }
+                
+                
             }
             catch (Exception ex)
             {

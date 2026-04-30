@@ -33,8 +33,10 @@
             button1 = new Button();
             txtPositionName = new TextBox();
             PoistionCreate = new Button();
+            cmbOrgList = new ComboBox();
             cmbElectionTitle = new ComboBox();
             label1 = new Label();
+            label2 = new Label();
             label5 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -45,8 +47,10 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(txtPositionName);
             panel1.Controls.Add(PoistionCreate);
+            panel1.Controls.Add(cmbOrgList);
             panel1.Controls.Add(cmbElectionTitle);
             panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(label5);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
@@ -96,6 +100,18 @@
             PoistionCreate.UseVisualStyleBackColor = false;
             PoistionCreate.Click += PoistionCreate_Click;
             // 
+            // cmbOrgList
+            // 
+            cmbOrgList.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbOrgList.FlatStyle = FlatStyle.Flat;
+            cmbOrgList.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbOrgList.FormattingEnabled = true;
+            cmbOrgList.Items.AddRange(new object[] { "test" });
+            cmbOrgList.Location = new Point(22, 249);
+            cmbOrgList.Name = "cmbOrgList";
+            cmbOrgList.Size = new Size(303, 33);
+            cmbOrgList.TabIndex = 5;
+            // 
             // cmbElectionTitle
             // 
             cmbElectionTitle.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -107,6 +123,7 @@
             cmbElectionTitle.Name = "cmbElectionTitle";
             cmbElectionTitle.Size = new Size(303, 33);
             cmbElectionTitle.TabIndex = 5;
+            cmbElectionTitle.SelectedIndexChanged += cmbElectionTitle_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -119,6 +136,18 @@
             label1.Size = new Size(188, 32);
             label1.TabIndex = 4;
             label1.Text = "Position Name:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Maroon;
+            label2.Location = new Point(12, 214);
+            label2.Name = "label2";
+            label2.Size = new Size(181, 32);
+            label2.TabIndex = 4;
+            label2.Text = "Organizations:";
             // 
             // label5
             // 
@@ -157,5 +186,7 @@
         private Label label1;
         private Button button1;
         private Button PoistionCreate;
+        private ComboBox cmbOrgList;
+        private Label label2;
     }
 }

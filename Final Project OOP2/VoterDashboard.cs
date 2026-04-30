@@ -83,7 +83,7 @@ namespace Final_Project_OOP2
                 {
                     conn.Open();
                     // Using Username = ? to match your variable currentVoterID
-                    string query = "SELECT HasVoted FROM Users WHERE Username = ?";
+                    string query = "SELECT HasVoted FROM Voters WHERE Username = ?";
 
                     using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {

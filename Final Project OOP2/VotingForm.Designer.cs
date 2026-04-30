@@ -475,8 +475,8 @@
             ClientSize = new Size(1557, 818);
             Controls.Add(mainPanel);
             Controls.Add(pictureBox1);
-            Controls.Add(pnlProfile);
             Controls.Add(pnlVoterArea);
+            Controls.Add(pnlProfile);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VotingForm";
             StartPosition = FormStartPosition.CenterScreen;

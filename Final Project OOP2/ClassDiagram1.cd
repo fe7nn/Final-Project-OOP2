@@ -3,13 +3,13 @@
   <Class Name="Final_Project_OOP2.Properties.Resources" Collapsed="true">
     <Position X="12.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAgAQUAgAAAETAggCBMAKCAUU+EAgkEQAgAAAhcIg=</HashCode>
+      <HashCode>gAgAgAQUAgAAAETAggCBMAKCAUU+EAgkEQAgAAAhcIg=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Final_Project_OOP2.AddCandidate" Collapsed="true">
     <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAECAAChEAAECAAAACAEABAAAAAgAAAQAAABA=</HashCode>
+      <HashCode>BAAAAKAMECAgCjUjAECAAEACAEABACAACgAAAQECAAQ=</HashCode>
       <FileName>AddCandidate.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -23,18 +23,18 @@
   <Class Name="Final_Project_OOP2.AddPosition" Collapsed="true">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAACAACBAAAACAAAACAAAIAAAAAAAAAQAAAIA=</HashCode>
+      <HashCode>AAAAgCAggCAACBAgAACAAAQCAAAIAIAAAkABIQgAAIA=</HashCode>
       <FileName>AddPosition.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Final_Project_OOP2.AdminDashboard">
+  <Class Name="Final_Project_OOP2.AdminDashboard" Collapsed="true">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>9zWH/VJw3Wk4YbIwa0ykAcByooIJ4VcqDARFgwBzHkQ=</HashCode>
+      <HashCode>/yWH/RJ0/Wm4ebIwa0ysAcRypqcL4VcqTSRHkwFzflY=</HashCode>
       <FileName>AdminDashboard.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -44,14 +44,14 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAgAAGAAgCAAADAAAACAAIACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AEgEAGAAgCBAEDAAAACAAIAiAAAAAAAAAAAAAUgAAAA=</HashCode>
       <FileName>EditElection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Final_Project_OOP2.ImportVoters">
     <Position X="8.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAIAAACAAAAAAAACIAAACAAAEAAABBAAAAQAAAAA=</HashCode>
+      <HashCode>IBIAAIAAACIAAAAAAACIIAACAAAEAAABBAAAAQAAAAA=</HashCode>
       <FileName>ImportVoters.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,9 +73,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Final_Project_OOP2.VoterDashboard" Collapsed="true">
-    <Position X="5.5" Y="3.5" Width="1.5" />
+    <Position X="5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAYrAAACAAABBAAQGAAAICAAACKWAAAABIBSBAAAQ=</HashCode>
+      <HashCode>EAQAYrQAQCAQAJlQAQGAgBICAQQDLeAAAABIBSBAAQY=</HashCode>
       <FileName>VoterDashboard.cs</FileName>
     </TypeIdentifier>
   </Class>

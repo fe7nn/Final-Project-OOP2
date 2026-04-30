@@ -194,6 +194,15 @@ namespace Final_Project_OOP2
                     }
                 }
 
+                if (cmbPositions.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a position before voting.",
+                                    "No Position Selected",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return;
+                }
+
                 string selectedPosition = cmbPositions.SelectedItem.ToString();
 
                 DialogResult result = MessageBox.Show($"Are you sure you want to vote for {selectedCandidate} as {selectedPosition}?",
@@ -274,7 +283,7 @@ namespace Final_Project_OOP2
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 conn.Open();
-                string sql = "SELECT Course FROM Users WHERE Username = ?";
+                string sql = "SELECT Course FROM Voters WHERE Username = ?";
                 OleDbCommand cmd = new OleDbCommand(sql, conn);
                 cmd.Parameters.AddWithValue("?", id);
                 return cmd.ExecuteScalar()?.ToString() ?? "Unknown";
@@ -346,7 +355,7 @@ namespace Final_Project_OOP2
                 try
                 {
                     conn.Open();
-                    string sql = "UPDATE [Users] SET [HasVoted] = 'Yes' WHERE [Username] = ?";
+                    string sql = "UPDATE [Voters] SET [HasVoted] = 'Yes' WHERE [Username] = ?";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                     {

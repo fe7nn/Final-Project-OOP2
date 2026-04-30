@@ -5,13 +5,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Final_Project_OOP2
 {
     public partial class AddCandidate : Form
     {
         // Data properties
+
         public string CandidateName { get; set; }
         public string Election { get; set; }
         public string Position { get; set; }
@@ -19,32 +19,41 @@ namespace Final_Project_OOP2
         public Image Photo { get; set; }
         public string PhotoPath { get; set; }
 
+        // NEW: Property to hold the President's Organization (e.g., "ICPEP")
+        public string CurrentOrg { get; set; }
 
         // properties to hold the lists from the dashboard
         public List<string> ElectionList { get; set; } = new List<string>();
         public List<string> PositionList { get; set; } = new List<string>();
+
+        // Guard to avoid re-entrant calls while filling positions
+        private bool _isLoadingPositions = false;
 
         public AddCandidate()
         {
             InitializeComponent();
         }
 
-
         // Use this method when EDITING an existing candidate
         public void LoadCandidateData(string path, string name, string election, string position, string desc, List<string> eList, List<string> pList)
         {
-            // IMPORTANT: Replace 'txtName', 'cmbElection', etc. with YOUR control names
             txtName.Text = name;
             cmbElectionTitle.Text = election;
             cmbPosition.Text = position;
             txtDescription.Text = desc;
 
-            // Fill the ComboBoxes using the list names from the parentheses (eList, pList)
+            // Fill the ComboBoxes
+            cmbElectionTitle.Items.Clear();
+            cmbPosition.Items.Clear();
             foreach (var item in eList) cmbElectionTitle.Items.Add(item);
             foreach (var item in pList) cmbPosition.Items.Add(item);
 
-            // Keep the old path in case the user doesn't pick a new photo
             this.PhotoPath = path;
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+            {
+                lblFileName.Text = path;
+                // Optional: pbPreview.Image = Image.FromFile(path);
+            }
         }
 
         private void btnChooseFile_Click(object sender, EventArgs e)
@@ -54,11 +63,9 @@ namespace Final_Project_OOP2
 
             if (open.ShowDialog() == DialogResult.OK)
             {
-                // Display the path in your label (lblPhotoPath)
                 lblFileName.Text = open.FileName;
-
-                // Optional: Show a preview if you have a PictureBox
-
+                // If you have a PictureBox for preview, load it here:
+                // pbPreview.Image = Image.FromFile(open.FileName);
             }
         }
 
@@ -71,27 +78,27 @@ namespace Final_Project_OOP2
                 try
                 {
                     conn.Open();
-                    // Use [] for all column names to be safe with Access
-                    string sql = "INSERT INTO Candidates ([ElectionTitle], [Position], [FullName], [Description], [ImagePath]) " +
-                                 "VALUES (?, ?, ?, ?, ?)";
+                    // Count your '?' markers carefully (Total of 6)
+                    string sql = "INSERT INTO Candidates ([ElectionTitle], [Position], [FullName], [Description], [ImagePath], [Organization]) " +
+                                 "VALUES (?, ?, ?, ?, ?, ?)";
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                     {
+                        // Order MUST match the SQL statement above
                         cmd.Parameters.AddWithValue("@title", cmbElectionTitle.Text);
                         cmd.Parameters.AddWithValue("@pos", cmbPosition.Text);
                         cmd.Parameters.AddWithValue("@name", txtName.Text);
                         cmd.Parameters.AddWithValue("@desc", txtDescription.Text);
                         cmd.Parameters.AddWithValue("@img", lblFileName.Text);
 
+                        // CRITICAL: Ensure CurrentOrg is not null
+                        cmd.Parameters.AddWithValue("@org", string.IsNullOrEmpty(CurrentOrg) ? "Unknown" : CurrentOrg);
+
                         cmd.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("Candidate successfully added to the election!", "Success");
-
-                    // 1. Set DialogResult to OK so the Dashboard knows to refresh
+                    MessageBox.Show("Candidate successfully added!", "Success");
                     this.DialogResult = DialogResult.OK;
-
-                    // 2. Close the pop-up
                     this.Close();
                 }
                 catch (Exception ex)
@@ -101,44 +108,106 @@ namespace Final_Project_OOP2
             }
         }
 
-
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void cmbElectionTitle_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddCandidate_Load_1(object sender, EventArgs e)
         {
-            // FORCE CLEAR THE OLD DATA
+            // Unlock both to be safe
             cmbElectionTitle.DataSource = null;
             cmbPosition.DataSource = null;
+            cmbElectionTitle.Items.Clear();
+            cmbPosition.Items.Clear();
 
-            // RE-BIND THE NEW DATA
+            // Bind Elections only
             if (ElectionList != null && ElectionList.Count > 0)
             {
+                // Use a list for the DataSource
                 cmbElectionTitle.DataSource = ElectionList.Distinct().ToList();
             }
 
-            if (PositionList != null && PositionList.Count > 0)
-            {
-                cmbPosition.DataSource = PositionList.Distinct().ToList();
-            }
+            // Ensure the correct event handler is attached so selecting an election loads positions
+            cmbElectionTitle.SelectedIndexChanged -= cmbElectionTitle_SelectedIndexChanged;
+            cmbElectionTitle.SelectedIndexChanged += cmbElectionTitle_SelectedIndexChanged;
 
-            // Restore text if we are editing
-            if (!string.IsNullOrEmpty(Election)) cmbElectionTitl.Text = Election;
+            // Instead of binding PositionList here, let the SelectedIndexChanged 
+            // of the ElectionTitle handle it automatically.
+            LoadPositionsForSelectedElection();
+
+            if (!string.IsNullOrEmpty(Election)) cmbElectionTitle.Text = Election;
             if (!string.IsNullOrEmpty(Position)) cmbPosition.Text = Position;
         }
 
-        private void cmbElectionTitle_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void LoadPositionsForSelectedElection()
         {
+            if (_isLoadingPositions) return;
 
+            if (cmbElectionTitle.SelectedItem == null) return;
+            string selectedElection = cmbElectionTitle.SelectedItem.ToString();
+            if (string.IsNullOrWhiteSpace(selectedElection)) return;
+
+            _isLoadingPositions = true;
+
+            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Break the link to prevent the "DataSource" error
+                    cmbPosition.DataSource = null;
+                    cmbPosition.Items.Clear();
+
+                    // SQL targets the Positions table
+                    string sql = "SELECT [PositionName] FROM [Positions] WHERE [ElectionTitle] = ?";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("?", selectedElection);
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string pos = reader["PositionName"]?.ToString() ?? "";
+                                if (!string.IsNullOrEmpty(pos))
+                                {
+                                    cmbPosition.Items.Add(pos);
+                                }
+                            }
+                        }
+                    }
+
+                    if (cmbPosition.Items.Count > 0) cmbPosition.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading filtered positions: " + ex.Message);
+                }
+                finally
+                {
+                    _isLoadingPositions = false;
+                }
+            }
+        }
+
+        // Ensure election selection triggers reload of positions
+        private void cmbElectionTitle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadPositionsForSelectedElection();
+        }
+
+        // Don't use this to load positions (Designer may still wire this). Keep it simple.
+        private void cmbPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbPosition.SelectedItem != null)
+            {
+                Position = cmbPosition.SelectedItem.ToString();
+            }
         }
     }
 }

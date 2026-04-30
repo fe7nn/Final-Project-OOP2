@@ -80,6 +80,7 @@
             cmbPosition.Name = "cmbPosition";
             cmbPosition.Size = new Size(430, 33);
             cmbPosition.TabIndex = 35;
+            cmbPosition.SelectedIndexChanged += cmbPosition_SelectedIndexChanged;
             // 
             // cmbElectionTitle
             // 
@@ -91,7 +92,6 @@
             cmbElectionTitle.Name = "cmbElectionTitle";
             cmbElectionTitle.Size = new Size(430, 33);
             cmbElectionTitle.TabIndex = 35;
-            cmbElectionTitle.SelectedIndexChanged += cmbElectionTitle_SelectedIndexChanged_1;
             // 
             // btnCancel
             // 
