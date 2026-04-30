@@ -41,7 +41,7 @@
             lblEndDate = new Label();
             lblStartDate = new Label();
             label3 = new Label();
-            lblStatusLabel = new Label();
+            lblActiveElections = new Label();
             lblWelcome = new Label();
             pnlElectionCard = new Panel();
             lblElectionTitle = new Label();
@@ -158,7 +158,7 @@
             panel2.Controls.Add(lblEndDate);
             panel2.Controls.Add(lblStartDate);
             panel2.Controls.Add(label3);
-            panel2.Controls.Add(lblStatusLabel);
+            panel2.Controls.Add(lblActiveElections);
             panel2.Controls.Add(lblWelcome);
             panel2.Controls.Add(pnlElectionCard);
             panel2.Controls.Add(pnlTimeContainer);
@@ -219,17 +219,17 @@
             label3.TabIndex = 34;
             label3.Text = "Your vote is your voice — make it count! Support leaders who reflect your values and vision for a better community.";
             // 
-            // lblStatusLabel
+            // lblActiveElections
             // 
-            lblStatusLabel.BackColor = Color.Transparent;
-            lblStatusLabel.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStatusLabel.ForeColor = Color.Black;
-            lblStatusLabel.Location = new Point(51, 67);
-            lblStatusLabel.Name = "lblStatusLabel";
-            lblStatusLabel.Size = new Size(1144, 47);
-            lblStatusLabel.TabIndex = 32;
-            lblStatusLabel.Text = "Active Elections";
-            lblStatusLabel.TextAlign = ContentAlignment.MiddleCenter;
+            lblActiveElections.BackColor = Color.Transparent;
+            lblActiveElections.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblActiveElections.ForeColor = Color.Black;
+            lblActiveElections.Location = new Point(51, 67);
+            lblActiveElections.Name = "lblActiveElections";
+            lblActiveElections.Size = new Size(1144, 47);
+            lblActiveElections.TabIndex = 32;
+            lblActiveElections.Text = "Active Elections";
+            lblActiveElections.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblWelcome
             // 
@@ -538,7 +538,7 @@
         private Label lblEndDate;
         private Label lblStartDate;
         private Label label3;
-        private Label lblStatusLabel;
+        private Label lblActiveElections;
         private Label lblWelcome;
         private Panel pnlElectionCard;
         private Label lblElectionTitle;

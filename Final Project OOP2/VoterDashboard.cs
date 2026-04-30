@@ -44,10 +44,18 @@ namespace Final_Project_OOP2
             }
             else
             {
-                lblStatusLabel.Text = "No Election Assigned";
-                if (btnVoteNow.Text != "Already Voted")
+                // No election assigned to this voter at all
+                lblElectionTitle.Text = "No Election Assigned";
+                lblStartDate.Text = "";
+                lblEndDate.Text = "";
+                lblTimeRemaining.Text = "N/A";
+                lblActiveElections.Text = "NO ELECTION";
+                lblActiveElections.BackColor = Color.Gray;
+
+                // Only disable if they haven't already voted
+                if (btnVoteNow.Text != "Already Voted" && btnVoteNow.Text != "Voted")
                 {
-                    btnVoteNow.Text = "Closed";
+                    btnVoteNow.Text = "No Election";
                     btnVoteNow.Enabled = false;
                 }
             }
@@ -55,21 +63,48 @@ namespace Final_Project_OOP2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            // Guard: don't run if no election is assigned
+            if (string.IsNullOrEmpty(currentElectionTitle)) return;
+
             lblElectionTitle.Text = currentElectionTitle;
 
             if (btnVoteNow.Text == "Already Voted" || btnVoteNow.Text == "Voted")
             {
                 btnVoteNow.Enabled = false;
-                lblStatusLabel.Text = "VOTED";
-                lblStatusLabel.BackColor = Color.Gray;
+                lblActiveElections.Text = "VOTED";
+                lblActiveElections.BackColor = Color.Gray;
+                return;
+            }
+
+            DateTime now = DateTime.Now;
+
+            if (now < electionStartTime)
+            {
+                lblActiveElections.Text = "UPCOMING";
+                lblActiveElections.BackColor = Color.SteelBlue;
+                btnVoteNow.Enabled = false;
+                btnVoteNow.Text = "Not Yet Open";
+            }
+            else if (now >= electionStartTime && now <= electionEndTime)
+            {
+                lblActiveElections.Text = "ACTIVE";
+                lblActiveElections.BackColor = Color.Green;
+
+                // Don't re-enable if already voted
+                if (btnVoteNow.Text != "Voted" && btnVoteNow.Text != "Already Voted")
+                {
+                    btnVoteNow.Enabled = true;
+                    btnVoteNow.Text = "Vote Now!";
+                }
             }
             else
             {
-                // This assumes your ElectionManager class is correctly handling logic
-                lblStatusLabel.Text = ElectionManager.GetStatus();
-                lblStatusLabel.BackColor = ElectionManager.GetStatusColor();
-                btnVoteNow.Enabled = (ElectionManager.GetStatus() == "ACTIVE");
+                lblActiveElections.Text = "CLOSED";
+                lblActiveElections.BackColor = Color.Red;
+                btnVoteNow.Enabled = false;
+                btnVoteNow.Text = "Election Closed";
             }
+
         }
 
         private void CheckIfUserHasVoted()
@@ -94,7 +129,7 @@ namespace Final_Project_OOP2
                         {
                             btnVoteNow.Enabled = false;
                             btnVoteNow.Text = "Voted";
-                            lblStatusLabel.Text = "Already Voted";
+                            lblActiveElections.Text = "Already Voted";
                         }
                         else
                         {
@@ -131,6 +166,31 @@ namespace Final_Project_OOP2
                             lblElectionTitle.Text = currentElectionTitle;
                             lblStartDate.Text = "Start: " + electionStartTime.ToString("MMM dd, yyyy hh:mm tt");
                             lblEndDate.Text = "End: " + electionEndTime.ToString("MMM dd, yyyy hh:mm tt");
+
+                            // Dynamically set the "Active Elections" header label
+                            DateTime now = DateTime.Now;
+                            if (now < electionStartTime)
+                            {
+                                lblActiveElections.Text = "Upcoming Election";  // change to your label's name
+                                lblActiveElections.Text = "UPCOMING";
+                                lblActiveElections.BackColor = Color.SteelBlue;
+                                btnVoteNow.Enabled = false;
+                                btnVoteNow.Text = "Not Yet Open";
+                            }
+                            else if (now >= electionStartTime && now <= electionEndTime)
+                            {
+                                lblActiveElections.Text = "Active Election";
+                                lblActiveElections.Text = "ACTIVE";
+                                lblActiveElections.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                lblActiveElections.Text = "Completed Election";
+                                lblActiveElections.Text = "CLOSED";
+                                lblActiveElections.BackColor = Color.Red;
+                                btnVoteNow.Enabled = false;
+                                btnVoteNow.Text = "Election Closed";
+                            }
                         }
                     }
                 }
@@ -148,17 +208,26 @@ namespace Final_Project_OOP2
 
             if (now < electionStartTime)
             {
-                lblTimeRemaining.Text = "Not Started";
+                TimeSpan startsIn = electionStartTime - now;
+                lblTimeRemaining.Text = string.Format("Starts in {0:D2}d {1:D2}h {2:D2}m {3:D2}s",
+                    startsIn.Days, startsIn.Hours, startsIn.Minutes, startsIn.Seconds);
+                lblTimeRemaining.ForeColor = Color.SteelBlue;
+                btnVoteNow.Enabled = false;
+                btnVoteNow.Text = "Not Yet Open";
             }
             else if (remaining.TotalSeconds <= 0)
             {
                 lblTimeRemaining.Text = "Election Closed";
                 lblTimeRemaining.ForeColor = Color.Red;
+                btnVoteNow.Enabled = false;
+                btnVoteNow.Text = "Election Closed";
+                if (dashboardTimer != null) dashboardTimer.Stop(); // No need to keep ticking
             }
             else
             {
                 lblTimeRemaining.Text = string.Format("{0:D2}d {1:D2}h {2:D2}m {3:D2}s",
                     remaining.Days, remaining.Hours, remaining.Minutes, remaining.Seconds);
+                lblTimeRemaining.ForeColor = Color.Black;
             }
         }
 

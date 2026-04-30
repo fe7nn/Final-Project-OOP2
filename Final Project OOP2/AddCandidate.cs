@@ -11,7 +11,7 @@ namespace Final_Project_OOP2
     public partial class AddCandidate : Form
     {
         // Data properties
-
+        private string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
         public string CandidateName { get; set; }
         public string Election { get; set; }
         public string Position { get; set; }
@@ -71,9 +71,9 @@ namespace Final_Project_OOP2
 
         private void btnSaveCandidate_Click(object sender, EventArgs e)
         {
-            string accessConnString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
-            using (OleDbConnection conn = new OleDbConnection(accessConnString))
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
                 {
@@ -151,7 +151,7 @@ namespace Final_Project_OOP2
 
             _isLoadingPositions = true;
 
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {

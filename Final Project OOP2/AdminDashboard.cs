@@ -12,6 +12,9 @@ namespace Final_Project_OOP2
     {
         private string adminID;
         private string currentElectionTitle = "";
+
+        private string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+        
         public AdminDashboard(string userID)
         {
             InitializeComponent();
@@ -19,7 +22,7 @@ namespace Final_Project_OOP2
 
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
+        private void AdminDashboard_Load(object sender, EventArgs e) 
         {
             timer1.Start();
 
@@ -157,7 +160,7 @@ namespace Final_Project_OOP2
         // Add this helper method below
         private void SaveElectionToDatabase(string title, DateTime start, DateTime end)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -242,7 +245,7 @@ namespace Final_Project_OOP2
 
         private void LoadPositionsFromAccess()
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -266,7 +269,7 @@ namespace Final_Project_OOP2
 
         private void LoadElectionsFromAccess()
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -337,7 +340,7 @@ namespace Final_Project_OOP2
 
         private void DeleteElectionFromAccess(string title)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -360,7 +363,7 @@ namespace Final_Project_OOP2
 
         private int GetTotalVotesForElection(string electionTitle)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -428,7 +431,7 @@ namespace Final_Project_OOP2
 
             // ... then load the rest from the database as you did before ...
             cmbElectionAssign.SelectedIndex = 0; // Default to "All"
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -466,7 +469,7 @@ namespace Final_Project_OOP2
 
         private void LoadCandidatesFromAccess()
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -491,13 +494,13 @@ namespace Final_Project_OOP2
 
         private void LoadVotersFromAccess()
         {
-            string accessConnString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             // Get selection (SelectedItem or typed text)
             string selectedElection = (cmbElectionAssign.SelectedItem ?? cmbElectionAssign.Text)?.ToString().Trim();
             if (string.IsNullOrEmpty(selectedElection)) selectedElection = "All";
 
-            using (OleDbConnection conn = new OleDbConnection(accessConnString))
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
                 {
@@ -551,7 +554,7 @@ namespace Final_Project_OOP2
 
         private void SaveVotersToAccess(DataTable dt, string electionTitle)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -684,7 +687,7 @@ namespace Final_Project_OOP2
 
         private void UpdateElectionInAccess(string oldTitle, string newTitle, DateTime start, DateTime end)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -715,7 +718,7 @@ namespace Final_Project_OOP2
 
         private void DeleteCandidateVotes(string electionTitle, string candidateName)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -774,7 +777,7 @@ namespace Final_Project_OOP2
                     if (MessageBox.Show($"Are you sure you want to delete the '{currentPosition}' position for '{currentElection}'?",
                         "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+                        
 
                         using (OleDbConnection conn = new OleDbConnection(connStr))
                         {
@@ -845,7 +848,7 @@ namespace Final_Project_OOP2
         private void DeleteCandidateByName(string name)
         {
             // Make sure this path is exactly where your database is located
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -972,7 +975,7 @@ namespace Final_Project_OOP2
 
         private void UpdateStatusInDatabase(string title, string status)
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -1039,9 +1042,9 @@ namespace Final_Project_OOP2
 
             if (result == DialogResult.Yes)
             {
-                string accessConnString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+                
 
-                using (OleDbConnection accessConn = new OleDbConnection(accessConnString))
+                using (OleDbConnection accessConn = new OleDbConnection(connStr))
                 {
                     try
                     {
@@ -1144,9 +1147,9 @@ namespace Final_Project_OOP2
 
                 if (result == DialogResult.Yes)
                 {
-                    string accessConnString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+                    
 
-                    using (OleDbConnection conn = new OleDbConnection(accessConnString))
+                    using (OleDbConnection conn = new OleDbConnection(connStr))
                     {
                         try
                         {
@@ -1280,7 +1283,7 @@ namespace Final_Project_OOP2
             if (string.IsNullOrEmpty(currentElectionTitle)) return;
 
             OleDbConnection.ReleaseObjectPool();
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -1344,7 +1347,7 @@ namespace Final_Project_OOP2
         }
         private void LoadElectionTitles()
         {
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -1401,7 +1404,7 @@ namespace Final_Project_OOP2
 
             if (confirm == DialogResult.Yes)
             {
-                string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+                
                 using (OleDbConnection conn = new OleDbConnection(connStr))
                 {
                     try
@@ -1438,7 +1441,7 @@ namespace Final_Project_OOP2
             string selected = cmbElectionFilter.Text;
             if (string.IsNullOrEmpty(selected) || selected == "--Select Election--") return;
 
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb";
+            
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
@@ -1545,8 +1548,8 @@ namespace Final_Project_OOP2
                 area.RecalculateAxesScale();
             }
 
-            string connStrLocal = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
-            using (OleDbConnection conn = new OleDbConnection(connStrLocal))
+            
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
                 {

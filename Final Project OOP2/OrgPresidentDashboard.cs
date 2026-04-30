@@ -618,7 +618,7 @@ namespace Final_Project_OOP2
         private void DeleteCandidateByName(string name)
         {
             // Make sure this path is exactly where your database is located
-            string connStr = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
+            
 
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
@@ -671,8 +671,8 @@ namespace Final_Project_OOP2
                 area.AxisY.MajorGrid.Enabled = false;
             }
 
-            string connStrLocal = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Downloads\OOP Final Project - TAMARES\VotingSystem.mdb;";
-            using (OleDbConnection conn = new OleDbConnection(connStrLocal))
+            
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 try
                 {
